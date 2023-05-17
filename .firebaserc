@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "texurnet-aa84e": {
+      "hosting": {
+        "Texurnet": [
+          "texurnet-aa84e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "texurnet-aa84e"
+  }
+}
