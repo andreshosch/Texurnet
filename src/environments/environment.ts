@@ -1,11 +1,11 @@
 export const environment = {
   production:false,
   firebase: {
-    apiKey: "AIzaSyA5fYGdHakLo6Gj4URAodiIq2zOSBidxDM",
-    authDomain: "texurnet-aa84e.firebaseapp.com",
-    projectId: "texurnet-aa84e",
-    storageBucket: "texurnet-aa84e.appspot.com",
-    messagingSenderId: "636048755810",
-    appId: "1:636048755810:web:e6665c3ab6ad3c5f9bd53b"
+    apiKey: "AIzaSyDYu7CLTJmEqNtADDzAB8gQsOPH6OmaVYU",
+    authDomain: "sistema-texurnet.firebaseapp.com",
+    projectId: "sistema-texurnet",
+    storageBucket: "sistema-texurnet.appspot.com",
+    messagingSenderId: "296034186283",
+    appId: "1:296034186283:web:d6cc074c569918c375e66e"
   },};
 
