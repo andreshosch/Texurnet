@@ -35,8 +35,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -93,21 +93,11 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
-            "prerender": false,
-            "ssr": false,
-            "browserTarget": "Texurnet:build:production",
-            "firebaseProject": "texurnet-aa84e",
-            "firebaseHostingSite": "texurnet-aa84e"
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "40b8cade-62ce-4c2d-9408-3c9f9d0cec31"
+    "analytics": false
   }
 }
