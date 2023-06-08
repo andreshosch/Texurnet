@@ -21,7 +21,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-import {MatTabsModule} from '@angular/material/tabs'
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -46,7 +47,8 @@ import {MatTabsModule} from '@angular/material/tabs'
     MatCardModule,
     MatGridListModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -66,7 +68,8 @@ import {MatTabsModule} from '@angular/material/tabs'
     MatCardModule,
     MatGridListModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule
   ]
 })
 export class SharedModule { }
