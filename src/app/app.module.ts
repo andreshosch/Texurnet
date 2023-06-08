@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './shared/shared.module';
@@ -13,6 +15,7 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
  import { AngularFireModule } from '@angular/fire/compat';
 import { HomeComponent } from './components/home/home.component';
 import { VistaClienteComponent } from './components/vista-cliente/vista-cliente.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -26,7 +29,8 @@ import { VistaClienteComponent } from './components/vista-cliente/vista-cliente.
     ClienteComponent,
     CrearClienteComponent,
     HomeComponent,
-    VistaClienteComponent
+    VistaClienteComponent,
+    FooterComponent
     
   ],
   imports: [
@@ -37,6 +41,9 @@ import { VistaClienteComponent } from './components/vista-cliente/vista-cliente.
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDatepickerModule
    
   ],
   exports: [

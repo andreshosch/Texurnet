@@ -16,8 +16,13 @@ export class CrearClienteComponent {
   titulo='Crear Cliente';
   id: string|null
   listClientes:Cliente[]=[]
+  minimo:Date
+  maximo:Date
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
+    this.minimo = new Date(); 
+    this.maximo = new Date();
+    this.minimo.setFullYear(this.minimo.getFullYear() -100);
     this.form=this.fb.group({
       nombre:['',Validators.required],
       apellido:['',Validators.required],
