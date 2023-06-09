@@ -16,6 +16,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 })
 export class ClienteComponent {
   listClientes: Cliente[] = []
+  fecha=new Date().getTime();
 
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tipoLicencia', 'nroSerie', 'password', 'tiempo', 'fechaLicencia','acciones'];
@@ -59,7 +60,7 @@ setDataSourceAttributes() {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+
 
   }
 
@@ -92,4 +93,37 @@ eliminarCliente(id:any){
            console.log(error)
          });
        }
-  }
+
+      //  calcularDiferencia(fecha2:any) {
+      //   console.log(fecha2)
+      //   console.log(this.fecha)
+      //   let fecha3=(this.fecha-fecha2)
+      //   console.log(fecha3)
+      //   const fecha4=(fecha3/86400000)
+      //   console.log(fecha4)
+      // }
+       
+      calcularDiferencia(date: Date): number {
+
+       
+
+ // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
+        const currentDate = new Date();
+        const inputDate = new Date(date);
+        
+        // Convertir las fechas a tiempo en milisegundos
+        const currentTimestamp = currentDate.getTime();
+        const inputTimestamp = inputDate.getTime();
+        
+        // Calcular la diferencia en milisegundos
+        const difference =   inputTimestamp-currentTimestamp;
+        
+        // Convertir la diferencia en días
+        const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+       
+        console.log(`Dias de diferencia: ${differenceInDays}`)
+        
+        return Math.floor(differenceInDays);
+      }
+       }
+

@@ -95,7 +95,7 @@ export class CrearClienteComponent {
           nroSerie: data.nroSerie,
           password: data.password,
           tiempo: data.tiempo,
-fechaLicencia:data.fechaLicencia
+          fechaLicencia:data.fechaLicencia.toDate()
         })
       })
     }
