@@ -5,7 +5,7 @@
         <div class="example-spacer"> </div>
         <button mat-raised-button color="primary" routerLink="/crearCliente">Agregar</button>
     </mat-toolbar>
-    <div *ngIf="listAlumnos.length>0">
+    <div *ngIf="listClientes.length>0">
         <mat-form-field>
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Búsqueda clientes" #input autocomplete="off">
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    <h2 *ngIf="listAlumnos.length==0">No hay usuarios para mostrar</h2>
+    <h2 *ngIf="listClientes.length==0">No hay usuarios para mostrar</h2>
     <mat-toolbar>
         <div class="example-spacer">
 

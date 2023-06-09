@@ -15,30 +15,53 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./listar-clientes.component.css']
 })
 export class ClienteComponent {
-  listAlumnos: Cliente[] = []
+  listClientes: Cliente[] = []
 
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tipoLicencia', 'nroSerie', 'password', 'tiempo', 'fechaLicencia','acciones'];
-    dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Cliente>;
 
-   @ViewChild(MatPaginator) paginator!: MatPaginator;
-   @ViewChild(MatSort) sort!: MatSort
+  private paginator: MatPaginator; 
+  private sort: MatSort;
+
+    
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
 
 
+}
 
-  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar) {
+@ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+  this.paginator = mp;
+  this.paginator._intl.itemsPerPageLabel='Clientes por Página'
+  this.paginator._intl.firstPageLabel="Primera Página"
+  this.paginator._intl.previousPageLabel="Página Anterior"
+  this.paginator._intl.nextPageLabel='Siguiente Página'
+  this.paginator._intl.lastPageLabel="Última Página"
+  this.setDataSourceAttributes();
+}
+
+setDataSourceAttributes() {
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+  }
+
+
+  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar,
+    ) {
+    this.dataSource = new MatTableDataSource(this.listClientes);
   }
 
   ngOnInit() {
       this.cargarCliente()
   }
-  ngAfterViewInit() {
 
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource.paginator)
-    console.log("Paginator" + this.paginator)
-    this.dataSource.sort = this.sort;
-}
+
+  }
 
 applyFilter(event: Event) {
  const filterValue = (event.target as HTMLInputElement).value;
@@ -48,10 +71,10 @@ applyFilter(event: Event) {
 
    cargarCliente() {
     this._clienteService.getClients().subscribe(doc=>{
-      this.listAlumnos=[]
-      this.dataSource = new MatTableDataSource(this.listAlumnos) 
+      this.listClientes=[]
+      this.dataSource = new MatTableDataSource(this.listClientes) 
       doc.forEach((element: any) => {
-        this.listAlumnos.push({
+        this.listClientes.push({
           id: element.payload.doc.id,
           ... element.payload.doc.data()
         })
