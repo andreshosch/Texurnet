@@ -93,16 +93,7 @@ eliminarCliente(id:any){
            console.log(error)
          });
        }
-
-      //  calcularDiferencia(fecha2:any) {
-      //   console.log(fecha2)
-      //   console.log(this.fecha)
-      //   let fecha3=(this.fecha-fecha2)
-      //   console.log(fecha3)
-      //   const fecha4=(fecha3/86400000)
-      //   console.log(fecha4)
-      // }
-       
+      
       calcularDiferencia(date: Date): number {
 
        
@@ -119,10 +110,7 @@ eliminarCliente(id:any){
         const difference =   inputTimestamp-currentTimestamp;
         
         // Convertir la diferencia en días
-        const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-       
-        console.log(`Dias de diferencia: ${differenceInDays}`)
-        
+        const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));      
         return Math.floor(differenceInDays);
       }
        }
