@@ -110,11 +110,11 @@ eliminarCliente(id:any){
           this.hayLicenciasAlLimite = true  
         }
         if(dias < 0){
-          this.myColor = 'red'
+          this.myColor = 'lightcoral'
         } else if(dias < 16){
-          this.myColor = 'orange'
+          this.myColor = 'lightyellow'
         }else if(dias < 31){
-          this.myColor = 'yellow'
+          this.myColor = 'lightsalmon'
         } else {
           this.myColor = 'white'
         }
