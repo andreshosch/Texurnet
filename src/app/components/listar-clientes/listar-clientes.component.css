@@ -26,3 +26,11 @@ body{
     position: relative;
     min-height: 100vh;
   }
+
+  .menor30Dias{
+    background-color: yellow;
+  }
+
+  .menor15Dias{
+    background-color: red;
+  }

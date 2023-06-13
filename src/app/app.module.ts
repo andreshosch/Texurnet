@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -16,9 +16,11 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
 import { HomeComponent } from './components/home/home.component';
 import { VistaClienteComponent } from './components/vista-cliente/vista-cliente.component';
 import { FooterComponent } from './components/footer/footer.component';
+import localeArEG from '@angular/common/locales/ar-EG';
+import { registerLocaleData } from '@angular/common';
 
 
-
+registerLocaleData(localeArEG);
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { FooterComponent } from './components/footer/footer.component';
      AngularFireModule,
      AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [ 
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
