@@ -24,6 +24,7 @@ export class ClienteComponent {
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
+  myColor: string ='grey'
 
   private paginator: MatPaginator; 
   private sort: MatSort;
@@ -78,11 +79,13 @@ applyFilter(event: Event) {
       this.listClientes=[]
       this.dataSource = new MatTableDataSource(this.listClientes) 
       doc.forEach((element: any) => {
+        this.ejecutar(element.payload.doc.data().fechaLicencia) 
+        // this.ejecutar(doc.data().fechaLicencia)
         this.listClientes.push({
           id: element.payload.doc.id,
           ... element.payload.doc.data()
         })
-        this.ejecutar(element.payload.doc.data().fechaLicencia)
+        // this.ejecutar(element.payload.doc.data().fechaLicencia)
       });
     })
   }
@@ -97,13 +100,25 @@ eliminarCliente(id:any){
         }, error => {
           console.log(error)
         });
+        this.hayLicenciasAlLimite= false;
       }
 
       ejecutar(dato){
         let buscarLicencias = dato.toDate()
-        if(!this.hayLicenciasAlLimite){
-          this.hayLicenciasAlLimite = ((this.calcularDiferencia(buscarLicencias)) < 31  )
+        let dias =this.calcularDiferencia(buscarLicencias)
+        if(dias < 31){
+          this.hayLicenciasAlLimite = true  
         }
+        if(dias < 0){
+          this.myColor = 'red'
+        } else if(dias < 16){
+          this.myColor = 'orange'
+        }else if(dias < 31){
+          this.myColor = 'yellow'
+        } else {
+          this.myColor = 'white'
+        }
+        console.log(`myColor: ${this.myColor}`)
       }
       
       calcularDiferencia(date: Date): number {
