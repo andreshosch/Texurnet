@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
     <mat-toolbar>
-        <span>Clientes</span>
+        <span>Clientes</span><span *ngIf="hayLicenciasAlLimite">Atte licencias</span>
         <div class="example-spacer"> </div>
         <button mat-raised-button color="primary" routerLink="/crearCliente">Agregar</button>
     </mat-toolbar>
@@ -16,7 +16,9 @@
             <table mat-table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                    <td  [ngStyle]="{'background-color':(calcularDiferencia(element.fechaLicencia.toDate())<0) ? 'red' :(calcularDiferencia(element.fechaLicencia.toDate())<16) ? 'orange':(calcularDiferencia(element.fechaLicencia.toDate())<31) ?'yellow':'white'}" mat-cell *matCellDef="let element">{{element.nombre}} </td>
+                    <!-- <td  [ngStyle]="{'background-color':(calcularDiferencia(element.fechaLicencia.toDate())<0) ? 'red' :(calcularDiferencia(element.fechaLicencia.toDate())<16) ? 'orange':(calcularDiferencia(element.fechaLicencia.toDate())<31) ?'yellow':'white'}" mat-cell *matCellDef="let element">{{element.nombre}} </td>
+                     -->
+                     <td  [ngStyle]="{'background-color': myColor} " mat-cell *matCellDef="let element">{{element.nombre}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="apellido">
@@ -52,7 +54,6 @@
                 <ng-container matColumnDef="fechaLicencia">
                     <th mat-header-cell *matHeaderCellDef>Fecha Licencia</th>
                     <td mat-cell *matCellDef="let element"> {{element.fechaLicencia.toDate()}}. </td>
-
                 </ng-container>
 
 
@@ -72,14 +73,14 @@
                             <mat-icon>delete</mat-icon>
                         </a>
 
-                        <div class="confirmation-dialog" *ngIf="hayLicenciasAlLimite">
+                        <!-- <div class="confirmation-dialog" *ngIf="hayLicenciasAlLimite">
                             <div class="dialog-content">
                             <h4>Atención: hay licencias llegando al limite</h4>
                             <div style="text-align: center;">
                                 <button mat-raised-button color="primary" (click)="confirm()">Aceptar</button>
                             </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </td>
                 </ng-container>
