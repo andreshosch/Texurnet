@@ -22,6 +22,8 @@ export class ClienteComponent {
   displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tipoLicencia', 'nroSerie', 'password', 'tiempo', 'fechaLicencia','acciones'];
   dataSource!: MatTableDataSource<Cliente>;
 
+  hayLicenciasAlLimite: boolean= false;
+
   private paginator: MatPaginator; 
   private sort: MatSort;
 
@@ -79,26 +81,32 @@ applyFilter(event: Event) {
           id: element.payload.doc.id,
           ... element.payload.doc.data()
         })
+        this.ejecutar(element.payload.doc.data().fechaLicencia)
       });
     })
   }
+
 eliminarCliente(id:any){
   this._clienteService.deleteClient(id).then(()=>{
     this._snackBar.open('El usuario ha sido eliminado correctamente', '', {
-             duration: 1500,
-             horizontalPosition: 'center',
-             verticalPosition: 'bottom'
-           })
-         }, error => {
-           console.log(error)
-         });
-       }
+            duration: 1500,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          })
+        }, error => {
+          console.log(error)
+        });
+      }
+
+      ejecutar(dato){
+        let buscarLicencias = dato.toDate()
+        if(!this.hayLicenciasAlLimite){
+          this.hayLicenciasAlLimite = ((this.calcularDiferencia(buscarLicencias)) < 31  )
+        }
+      }
       
       calcularDiferencia(date: Date): number {
-
-       
-
- // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
+        // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
         const currentDate = new Date();
         const inputDate = new Date(date);
         
@@ -110,8 +118,14 @@ eliminarCliente(id:any){
         const difference =   inputTimestamp-currentTimestamp;
         
         // Convertir la diferencia en días
-        const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));      
+        const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+
         return Math.floor(differenceInDays);
       }
-       }
+
+      confirm(){
+        this.hayLicenciasAlLimite = false;
+      }
+
+}
 
