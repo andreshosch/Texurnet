@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,7 +20,7 @@ export class ClienteComponent {
   fecha=new Date().getTime();
 
 
-  displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tipoLicencia', 'nroSerie', 'password', 'tiempo', 'fechaLicencia','acciones'];
+  displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tiempo', 'fechaLicencia','acciones'];
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
@@ -52,7 +53,7 @@ setDataSourceAttributes() {
   }
 
 
-  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar,
+  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar
     ) {
     this.dataSource = new MatTableDataSource(this.listClientes);
   }
@@ -125,6 +126,14 @@ eliminarCliente(id:any){
 
       confirm(){
         this.hayLicenciasAlLimite = false;
+      }
+
+      formatoFecha(date: Date): string {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear().toString();
+      
+        return `${day}/${month}/${year}`;
       }
 
 }

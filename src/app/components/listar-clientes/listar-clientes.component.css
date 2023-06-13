@@ -27,14 +27,7 @@ body{
     min-height: 100vh;
   }
 
-  .menor30Dias{
-    background-color: yellow;
-  }
-
-  .menor15Dias{
-    background-color: red;
-  }
-
+  
   .confirmation-dialog {
     z-index: 9;
     position: fixed;
