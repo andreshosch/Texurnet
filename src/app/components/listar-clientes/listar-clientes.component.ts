@@ -24,7 +24,6 @@ export class ClienteComponent {
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
-  myColor: string ='grey'
 
   private paginator: MatPaginator; 
   private sort: MatSort;
@@ -79,7 +78,7 @@ applyFilter(event: Event) {
       this.listClientes=[]
       this.dataSource = new MatTableDataSource(this.listClientes) 
       doc.forEach((element: any) => {
-        this.ejecutar(element.payload.doc.data().fechaLicencia) 
+        // this.ejecutar(element.payload.doc.data().fechaLicencia) 
         // this.ejecutar(doc.data().fechaLicencia)
         this.listClientes.push({
           id: element.payload.doc.id,
@@ -103,25 +102,7 @@ eliminarCliente(id:any){
         this.hayLicenciasAlLimite= false;
       }
 
-      ejecutar(dato){
-        let buscarLicencias = dato.toDate()
-        let dias =this.calcularDiferencia(buscarLicencias)
-        if(dias < 31){
-          this.hayLicenciasAlLimite = true  
-        }
-        if(dias < 0){
-          this.myColor = 'lightcoral'
-        } else if(dias < 16){
-          this.myColor = 'lightyellow'
-        }else if(dias < 31){
-          this.myColor = 'lightsalmon'
-        } else {
-          this.myColor = 'white'
-        }
-        console.log(`myColor: ${this.myColor}`)
-      }
-      
-      calcularDiferencia(date: Date): number {
+      calcularDiferencia(date: Date): string {
         // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
         const currentDate = new Date();
         const inputDate = new Date(date);
@@ -136,7 +117,24 @@ eliminarCliente(id:any){
         // Convertir la diferencia en días
         const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
 
-        return Math.floor(differenceInDays);
+        let dia = (Math.floor(differenceInDays))
+
+        if(dia < 31){
+          this.hayLicenciasAlLimite = true  
+        }
+        if (dia < (-180)){
+          return 'red'
+        }
+        else if(dia < 0){
+          return 'lightcoral'
+        } else if(dia < 16){
+          return 'lightyellow'
+        }else if(dia < 31){
+          return 'lightsalmon'
+        } else {
+          return 'white'
+        }
+
       }
 
       confirm(){
