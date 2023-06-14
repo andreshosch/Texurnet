@@ -27,23 +27,12 @@ body{
     min-height: 100vh;
   }
 
-  
-  .confirmation-dialog {
-    z-index: 9;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .clienteIzq{
+    width: 20%;
   }
 
-  .dialog-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .clienteDer{
+    width: 50%;
+    color: red;
+    text-align: center;
   }
