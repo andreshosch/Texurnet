@@ -20,7 +20,7 @@ export class ClienteComponent {
   fecha=new Date().getTime();
 
 
-  displayedColumns: string[] = ['nombre', 'apellido','ciudad', 'tiempo', 'fechaLicencia','acciones'];
+  displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','acciones'];
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
@@ -109,12 +109,15 @@ eliminarCliente(id:any){
         if(dias < 31){
           this.hayLicenciasAlLimite = true  
         }
-        if(dias < 0){
+        if (dias < -180){
           this.myColor = 'lightcoral'
+        }
+        else if(dias < 0){
+          this.myColor = 'lightpink'
         } else if(dias < 16){
           this.myColor = 'lightyellow'
         }else if(dias < 31){
-          this.myColor = 'lightsalmon'
+          this.myColor = 'lightorange'
         } else {
           this.myColor = 'white'
         }
@@ -122,20 +125,13 @@ eliminarCliente(id:any){
       }
       
       calcularDiferencia(date: Date): number {
-        // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
         const currentDate = new Date();
         const inputDate = new Date(date);
-        
-        // Convertir las fechas a tiempo en milisegundos
         const currentTimestamp = currentDate.getTime();
         const inputTimestamp = inputDate.getTime();
-        
-        // Calcular la diferencia en milisegundos
         const difference =   inputTimestamp-currentTimestamp;
-        
-        // Convertir la diferencia en días
         const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-
+        console.log(differenceInDays)
         return Math.floor(differenceInDays);
       }
 
@@ -147,7 +143,6 @@ eliminarCliente(id:any){
         const day = date.getDate().toString().padStart(2, '0');
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear().toString();
-      
         return `${day}/${month}/${year}`;
       }
 

@@ -30,7 +30,6 @@ export class CrearClienteComponent {
       tipoLicencia:['',Validators.required],
       nroSerie:['',Validators.required],
       password:['',Validators.required],
-      tiempo:['',Validators.required],
       fechaLicencia:['',Validators.required]
     })
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -49,7 +48,6 @@ export class CrearClienteComponent {
       tipoLicencia: this.form.get('tipoLicencia')?.value,
       nroSerie: this.form.get('nroSerie')?.value,
       password: this.form.get('password')?.value,
-      tiempo: this.form.get('tiempo')?.value,
       fechaLicencia: this.form.get('fechaLicencia')?.value,
     }
     let prueba=window.location;
@@ -94,7 +92,6 @@ export class CrearClienteComponent {
           tipoLicencia: data.tipoLicencia,
           nroSerie: data.nroSerie,
           password: data.password,
-          tiempo: data.tiempo,
           fechaLicencia:data.fechaLicencia.toDate()
         })
       })
