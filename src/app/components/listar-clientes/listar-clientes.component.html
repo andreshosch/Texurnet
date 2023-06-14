@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
     <mat-toolbar>
-        <span class="clienteIzq">Clientes</span><span class="clienteDer" *ngIf="hayLicenciasAlLimite">Atención: existen licencias prontas a vencer</span>
+        <span class="clienteIzq">Clientes</span><span class="clienteDer" *ngIf="hayLicenciasAlLimite">Atención: existen
+            licencias vencidas o prontas a vencer</span>
         <div class="example-spacer"> </div>
         <button mat-raised-button color="primary" routerLink="/crearCliente">Agregar</button>
     </mat-toolbar>
@@ -19,7 +20,7 @@
                     <td  [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element">{{element.nombre}} </td>
 
                 </ng-container>
-            
+
                 <ng-container matColumnDef="apellido">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.apellido}} </td>
@@ -93,13 +94,6 @@
     </div>
 
     <h2 *ngIf="listClientes.length==0">No hay usuarios para mostrar</h2>
-    <mat-toolbar>
-        <div class="example-spacer">
-
-            <button mat-raised-button color="primary" routerLink="/home">Volver</button>
-
-        </div>
-    </mat-toolbar>
-
+    <button mat-raised-button color="primary" routerLink="/home">Volver</button>
 </div>
 <app-footer></app-footer>
