@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <h2 *ngIf="listClientes.length==0">No hay usuarios para mostrar</h2>
-    <button mat-raised-button color="primary" routerLink="/home">Volver</button>
+    <h2 *ngIf="listClientes.length==0 ;hayLicenciasAlLimite" >No hay usuarios para mostrar</h2>
+    <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">Volver</button>
 </div>
 <app-footer></app-footer>

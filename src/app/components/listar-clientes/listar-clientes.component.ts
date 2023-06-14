@@ -90,7 +90,9 @@ applyFilter(event: Event) {
   }
 
 eliminarCliente(id:any){
+  
   this._clienteService.deleteClient(id).then(()=>{
+    
     this._snackBar.open('El usuario ha sido eliminado correctamente', '', {
             duration: 1500,
             horizontalPosition: 'center',
@@ -99,41 +101,42 @@ eliminarCliente(id:any){
         }, error => {
           console.log(error)
         });
-        this.hayLicenciasAlLimite= false;
+         if (this.listClientes=[]){
+          this.hayLicenciasAlLimite= false;
+         } 
+        
+         this.paginator.length=this.paginator.length-1
+      
       }
 
       calcularDiferencia(date: Date): string {
-        // Mostrará la diferencia en días entre la fecha pasada y la fecha actual
         const currentDate = new Date();
         const inputDate = new Date(date);
         const currentTimestamp = currentDate.getTime();
         const inputTimestamp = inputDate.getTime();
         const difference =   inputTimestamp-currentTimestamp;
         const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-
         let dia = (Math.floor(differenceInDays))
-
         if(dia < 31){
           this.hayLicenciasAlLimite = true  
         }
         if (dia < (-180)){
-          return 'red'
+          return '#FF4D4D'
         }
         else if(dia < 0){
-          return 'lightcoral'
+          return 'FFE14D'
         } else if(dia < 16){
-          return 'lightyellow'
+          return '#FF884D'
         }else if(dia < 31){
-          return 'lightsalmon'
+          return '#FFA64D'
         } else {
+          this.hayLicenciasAlLimite = false;
           return 'white'
         }
-
       }
-
-      confirm(){
-        this.hayLicenciasAlLimite = false;
-      }
+      // confirm(){
+      //   this.hayLicenciasAlLimite = false;
+      // }
 
       formatoFecha(date: Date): string {
         const day = date.getDate().toString().padStart(2, '0');
