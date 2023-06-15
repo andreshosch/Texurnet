@@ -8,8 +8,6 @@ import { Cliente } from 'src/app/models/cliente'
 import { ClienteService } from 'src/app/services/cliente.service';
 
 
-
-
 @Component({
   selector: 'app-listar-clientes',
   templateUrl: './listar-clientes.component.html',
@@ -92,7 +90,6 @@ applyFilter(event: Event) {
 eliminarCliente(id:any){
   
   this._clienteService.deleteClient(id).then(()=>{
-    
     this._snackBar.open('El usuario ha sido eliminado correctamente', '', {
             duration: 1500,
             horizontalPosition: 'center',
@@ -101,12 +98,13 @@ eliminarCliente(id:any){
         }, error => {
           console.log(error)
         });
-         if (this.listClientes=[]){
-          this.hayLicenciasAlLimite= false;
-         } 
+        //  if (this.listClientes=[]){
+        //   this.hayLicenciasAlLimite= false;
+        //  } 
+        this.hayLicenciasAlLimite= false;
+        console.log(`licencias en eliminar: ${this.hayLicenciasAlLimite}`)
+        this.paginator.length=this.paginator.length-1
         
-         this.paginator.length=this.paginator.length-1
-      
       }
 
       calcularDiferencia(date: Date): string {
@@ -117,6 +115,8 @@ eliminarCliente(id:any){
         const difference =   inputTimestamp-currentTimestamp;
         const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
         let dia = (Math.floor(differenceInDays))
+        console.log(`dia: ${dia}`)
+        console.log(`licencias en calcular: ${this.hayLicenciasAlLimite}`)
         if(dia < 31){
           this.hayLicenciasAlLimite = true  
         }
@@ -130,7 +130,7 @@ eliminarCliente(id:any){
         }else if(dia < 31){
           return '#FFA64D'
         } else {
-          this.hayLicenciasAlLimite = false;
+          // this.hayLicenciasAlLimite = false;
           return 'white'
         }
       }
