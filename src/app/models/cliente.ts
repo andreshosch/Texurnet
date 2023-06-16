@@ -6,9 +6,13 @@ export class Cliente {
     tipoLicencia: string;
     nroSerie: string;
     password: string;
-    fechaLicencia:Date
+    fechaLicencia:Date;
+    montoAcumulado:number;
+    montoInicial:number;
+    observaciones:string;
 
-    constructor(nombre: string, apellido: string, ciudad: string, tipoLicencia: string, nroSerie: string, password: string, fechaLicencia: Date) {
+
+    constructor(nombre: string, apellido: string, ciudad: string, tipoLicencia: string, nroSerie: string, password: string, fechaLicencia: Date,montoAcumulado:number,montoInicial:number,observaciones:string) {
 
         this.nombre = nombre;
         this.apellido = apellido;
@@ -17,5 +21,8 @@ export class Cliente {
         this.nroSerie = nroSerie;
         this.password = password;
         this.fechaLicencia = fechaLicencia;
+        this.montoAcumulado=montoAcumulado;
+        this.montoInicial=montoInicial;
+        this.observaciones=observaciones
     }
 }

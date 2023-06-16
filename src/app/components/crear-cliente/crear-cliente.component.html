@@ -57,8 +57,15 @@
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
                  </mat-grid-tile>
+                 <mat-grid-tile [colspan]="1" [rowspan]="1">
+                   
+                        <button mat-raised-button color="buttonPagos"routerLink="/pagosCliente/({{id}})" style="margin-left: 20%;">Ver Pagos del Cliente</button>
+                
+                </mat-grid-tile>
                 <mat-grid-tile [colspan]="4" [rowspan]="2">
-                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+                    
+                    <button mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()">Editar</button>
+                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px" *ngIf="!botonVisible">Aceptar</button>
                     <button mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
                 </mat-grid-tile>
             </mat-grid-list>

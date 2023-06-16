@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,13 +15,13 @@ import { ClienteService } from 'src/app/services/cliente.service';
 export class ClienteComponent {
   listClientes: Cliente[] = []
   fecha=new Date().getTime();
-
+  idDelete: string;
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','acciones'];
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
-
+  public showConfirmationDialog = false;
   private paginator: MatPaginator; 
   private sort: MatSort;
 
@@ -85,9 +84,13 @@ applyFilter(event: Event) {
     })
   }
 
-eliminarCliente(id:any){
-  
-  this._clienteService.deleteClient(id).then(()=>{
+
+eliminarCliente(id: any){
+  this.showConfirmationDialog = true;
+  this.idDelete = id;
+  }
+confirm(){
+  this._clienteService.deleteClient(this.idDelete).then(()=>{
     this._snackBar.open('El usuario ha sido eliminado correctamente', '', {
             duration: 1500,
             horizontalPosition: 'center',
@@ -99,10 +102,20 @@ eliminarCliente(id:any){
         //  if (this.listClientes=[]){
         //   this.hayLicenciasAlLimite= false;
         //  } 
+        this.showConfirmationDialog=false
         this.hayLicenciasAlLimite= false;
         console.log(`licencias en eliminar: ${this.hayLicenciasAlLimite}`)
         this.paginator.length=this.paginator.length-1
         
+      }
+
+      cancel() {
+        // Lógica para cancelar la acción
+        this.showConfirmationDialog = false;
+      }
+
+      detalleCliente(id: any){
+    
       }
 
       calcularDiferencia(date: Date): string {

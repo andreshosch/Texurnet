@@ -14,10 +14,10 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
  import { environment } from '../environments/environment';
  import { AngularFireModule } from '@angular/fire/compat';
 import { HomeComponent } from './components/home/home.component';
-import { VistaClienteComponent } from './components/vista-cliente/vista-cliente.component';
 import { FooterComponent } from './components/footer/footer.component';
 import localeArEG from '@angular/common/locales/ar-EG';
 import { registerLocaleData } from '@angular/common';
+import { PagosClientesComponent } from './components/pagos-clientes/pagos-clientes.component';
 
 
 registerLocaleData(localeArEG);
@@ -31,8 +31,8 @@ registerLocaleData(localeArEG);
     ClienteComponent,
     CrearClienteComponent,
     HomeComponent,
-    VistaClienteComponent,
-    FooterComponent
+    FooterComponent,
+    PagosClientesComponent
     
   ],
   imports: [

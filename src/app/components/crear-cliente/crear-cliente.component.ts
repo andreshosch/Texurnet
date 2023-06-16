@@ -18,6 +18,8 @@ export class CrearClienteComponent {
   listClientes:Cliente[]=[]
   minimo:Date
   maximo:Date
+  botonbloqueado=true;
+  botonVisible=false
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
     this.minimo = new Date(); 
@@ -49,6 +51,9 @@ export class CrearClienteComponent {
       nroSerie: this.form.get('nroSerie')?.value,
       password: this.form.get('password')?.value,
       fechaLicencia: this.form.get('fechaLicencia')?.value,
+      montoAcumulado:0,
+      montoInicial:0,
+      observaciones:" "
     }
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
@@ -57,7 +62,10 @@ export class CrearClienteComponent {
         duration: 1500,
         horizontalPosition: 'center',
       })
-    
+      setTimeout(() => {
+        this.router.navigate(['clientes'])
+      }, 2000);
+        
     }, error => {
       console.log(error)
       
@@ -71,7 +79,9 @@ export class CrearClienteComponent {
           horizontalPosition: 'center',
         })
           this.listClientes=data
-          
+          setTimeout(() => {
+            this.router.navigate(['clientes'])
+          }, 2000);
       }, error => {
         console.log(error)
         
@@ -83,7 +93,8 @@ export class CrearClienteComponent {
 
   editarCliente(){
     if (this.id !== null) {
-      this.titulo = 'Editar Cliente'
+      this.titulo = 'Datos Cliente'
+      this.botonVisible=true
       this._clienteService.getClientsById(this.id).subscribe(data => {
         this.form.setValue({
           nombre: data.nombre,
@@ -96,6 +107,9 @@ export class CrearClienteComponent {
         })
       })
     }
+  }
+  ocultarMostrarBotones() {
+    this.botonVisible = !this.botonVisible;
   }
 } 
 
