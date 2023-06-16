@@ -58,10 +58,10 @@ setDataSourceAttributes() {
 
   ngOnInit() {
       this.cargarCliente()
+      this.hayLicenciasAlLimite=false;
   }
 
   ngAfterViewInit() {
-
 
   }
 
@@ -74,15 +74,13 @@ applyFilter(event: Event) {
    cargarCliente() {
     this._clienteService.getClients().subscribe(doc=>{
       this.listClientes=[]
-      this.dataSource = new MatTableDataSource(this.listClientes) 
+      this.dataSource = new MatTableDataSource(this.listClientes)
+      this.hayLicenciasAlLimite=false 
       doc.forEach((element: any) => {
-        // this.ejecutar(element.payload.doc.data().fechaLicencia) 
-        // this.ejecutar(doc.data().fechaLicencia)
         this.listClientes.push({
           id: element.payload.doc.id,
           ... element.payload.doc.data()
         })
-        // this.ejecutar(element.payload.doc.data().fechaLicencia)
       });
     })
   }
