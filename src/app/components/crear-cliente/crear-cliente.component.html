@@ -13,9 +13,6 @@
                         <input matInput autocomplete="off" formControlName="nombre">
                     </mat-form-field>
                 </mat-grid-tile>
-                <!-- <mat-grid-tile [colspan]="3" [rowspan]="7">
-                    <img src="../../../../../assets/img/usuario.png" width="15%">
-                </mat-grid-tile> -->
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Apellido</mat-label>
@@ -64,12 +61,17 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="4" [rowspan]="2">
                     
-                    <button mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()">Editar</button>
-                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px" *ngIf="!botonVisible">Aceptar</button>
-                    <button mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
+                    <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()">Editar</button>
+                    <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px" *ngIf="!botonVisible">Aceptar</button>
+                    <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
                 </mat-grid-tile>
-            </mat-grid-list>
+            </mat-grid-list>        
         </form>
     </mat-card>
+
+    <div class="confirmation-dialog" *ngIf="showConfirmationDialog">
+        
+    </div>
+
 </div>
 <app-footer></app-footer>

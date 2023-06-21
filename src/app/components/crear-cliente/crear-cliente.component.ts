@@ -20,6 +20,7 @@ export class CrearClienteComponent {
   maximo:Date
   botonbloqueado=true;
   botonVisible=false
+  showConfirmationDialog= true
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
     this.minimo = new Date(); 
@@ -110,6 +111,7 @@ export class CrearClienteComponent {
   }
   ocultarMostrarBotones() {
     this.botonVisible = !this.botonVisible;
+    this.showConfirmationDialog=false;
   }
 } 
 
