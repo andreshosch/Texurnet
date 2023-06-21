@@ -60,19 +60,28 @@
                 <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef class="colorColumna">Acciones</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element;let i=index">
-                        <a class="pointer" [routerLink]="['/cliente', element.id]" style="color: grey;"
+                        <!-- <a class="pointer" [routerLink]="['/cliente', element.id]" style="color: grey;"
                             matTooltip="Ver Usuario">
                             <mat-icon>search</mat-icon>
-                        </a>
-                        <a class="pointer" [routerLink]="['/actualizarCliente', element.id]" style="color: grey;"
-                            matTooltip="Editar Usuario">
-                            <mat-icon>edit</mat-icon>
+                        </a> -->
+                        <a class="pointer" [routerLink]="['/verCliente', element.id]" style="color: grey;"
+                            matTooltip="Ver Usuario">
+                            <mat-icon>search</mat-icon>
                         </a>
                         <a class="pointer" (click)="eliminarCliente(element.id)" style="color: rgb(75, 75, 75);"
                             matTooltip="Eliminar Usuario">
                             <mat-icon>delete</mat-icon>
                         </a>
-
+                        <div class="confirmation-dialog" *ngIf="showConfirmationDialog">
+                            <div class="dialog-content">
+                                <h4>¿Está seguro de que desea continuar?</h4>
+                                <div style="text-align: center;">
+                                    <button mat-raised-button color="primary"
+                                        (click)="confirm(element.id)">Confirmar</button>
+                                    <button mat-raised-button color="primary" (click)="cancel()">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </ng-container>
 
