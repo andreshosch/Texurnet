@@ -104,7 +104,6 @@ confirm(){
         //  } 
         this.showConfirmationDialog=false
         this.hayLicenciasAlLimite= false;
-        console.log(`licencias en eliminar: ${this.hayLicenciasAlLimite}`)
         this.paginator.length=this.paginator.length-1
         
       }
@@ -126,8 +125,6 @@ confirm(){
         const difference =   inputTimestamp-currentTimestamp;
         const differenceInDays = Math.floor(difference / (1000 * 60 * 60 * 24));
         let dia = (Math.floor(differenceInDays))
-        console.log(`dia: ${dia}`)
-        console.log(`licencias en calcular: ${this.hayLicenciasAlLimite}`)
         if(dia < 31){
           this.hayLicenciasAlLimite = true  
         }

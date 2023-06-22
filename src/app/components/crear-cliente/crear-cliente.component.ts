@@ -44,6 +44,7 @@ export class CrearClienteComponent {
   }
 
   agregarCliente() {
+    this.showConfirmationDialog= false
     const client: Cliente = {
       nombre: this.form.get('nombre')?.value,
       apellido: this.form.get('apellido')?.value,
@@ -54,7 +55,9 @@ export class CrearClienteComponent {
       fechaLicencia: this.form.get('fechaLicencia')?.value,
       montoAcumulado:0,
       montoInicial:0,
-      observaciones:" "
+      observaciones:" ",
+      productoActual: [],
+      historico: []
     }
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
@@ -109,6 +112,7 @@ export class CrearClienteComponent {
       })
     }
   }
+
   ocultarMostrarBotones() {
     this.botonVisible = !this.botonVisible;
     this.showConfirmationDialog=false;
