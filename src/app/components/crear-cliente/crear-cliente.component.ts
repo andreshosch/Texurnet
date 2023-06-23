@@ -64,25 +64,24 @@ export class CrearClienteComponent {
 
 
     let clientes=[]
+    let flag=false
     if(prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.getClients().subscribe((data)=>{
         data.forEach((element:any)=>{
           clientes.push(element.payload.doc.data().nroSerie)
-          console.log(clientes)
          
         })
+        
 
+      for(let i=0; i<clientes.length;i++){
+        console.log((clientes[i]=== client.nroSerie))
+        if(clientes[i]=== client.nroSerie){
+         flag=true
+         
+        }
+      }
       })
-      let flag=false
-       console.log(clientes)
- console.log(clientes.length)
-//      for(let i=0; i<clientes.length;i++){
-//       console.log("dentro del for")
-//        if(chequeo){
-//         flag=true
-//         console.log("entre")
-//        }
-//      }
+ 
      if(flag){
       console.log("ya existe el cliente")
      }
@@ -90,20 +89,20 @@ export class CrearClienteComponent {
      
     
     else{
-      this._clienteService.createClient(client).then(() => {
-        this._snackBar.open('El cliente fue agregado con exito', '', {
-          duration: 1500,
-          horizontalPosition: 'center',
-        })
-        setTimeout(() => {
-          this.router.navigate(['clientes'])
-        }, 2000);
-          
-      }, error => {
-        console.log(error)
-        
+    this._clienteService.createClient(client).then(() => {
+      this._snackBar.open('El cliente fue agregado con exito', '', {
+        duration: 1500,
+        horizontalPosition: 'center',
       })
-    }
+      setTimeout(() => {
+        this.router.navigate(['clientes'])
+      }, 2000);
+        
+    }, error => {
+      console.log(error)
+      
+    })
+  }
    
   }
   else{
@@ -140,6 +139,7 @@ export class CrearClienteComponent {
           password: data.password,
           fechaLicencia:data.fechaLicencia.toDate()
         })
+        //Aca en 2 variables metemos el actual y el historico
       })
     }
   }
@@ -153,4 +153,4 @@ export class CrearClienteComponent {
 
 
 
- 
+
