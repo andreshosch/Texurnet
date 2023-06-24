@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pagos } from 'src/app/models/pagos';
 import { Pago } from 'src/app/models/pago';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-pagos-clientes',
@@ -10,11 +12,15 @@ import { Pago } from 'src/app/models/pago';
 })
 export class PagosClientesComponent {
 
+  formPago:FormGroup
+
   displayedColumns: string[] = ['TipoMoneda', 'Monto','Cotizacion','Equivalencia','Fecha','Observaciones'];
   dataSource!: MatTableDataSource<Pago>;
 
   displayedColumns2: string[] = ['Cliente', 'Producto','Costo','Saldo'];
   dataSource2!: MatTableDataSource<Pagos>;
+
+  cargaPago = false;
 
   listPagos: Pago[] = []
   // datos: Pagos
@@ -27,6 +33,16 @@ export class PagosClientesComponent {
 
   laFecha = new Date;
   miArray = []
+
+  constructor(){
+    this.formPago = new FormGroup({
+      tipoMoneda: new FormControl(),
+      montoDolar: new FormControl(),
+      montoPesos: new FormControl(),
+      cotizacionActual: new FormControl(),
+      observacion: new FormControl()
+    })
+  }
 
   ngOnInit(){
     this.cargarPagos()
@@ -66,5 +82,49 @@ export class PagosClientesComponent {
     this.dataSource = new MatTableDataSource(this.listPagos)
     this.dataSource2 = new MatTableDataSource([this.unPagos])
   }
+
+  showModalPago(){
+    this.cargaPago= true;
+  }
+
+  closeModalPago(){
+    this.cargaPago= false;
+  }
+
+  chequear(valor){
+    console.log(valor)
+  }
+
+  agregarPago(){
+
+
+    let elMonto = 0
+    let laCotizacion = 0
+    if(this.formPago.get('tipoMoneda')?.value == 'Dolar'){
+      elMonto = this.formPago.get('montoDolar')?.value
+      laCotizacion = 1;
+    }
+    else {
+      elMonto = this.formPago.get('montoPesos')?.value
+      laCotizacion = this.formPago.get('cotizacionActual')?.value
+    }
+
+    const miPago: Pago = {
+      moneda: this.formPago.get('tipoMoneda')?.value,
+      monto: elMonto,
+      cotizacion: laCotizacion,
+      equivalencia: elMonto / laCotizacion,
+      fecha: new Date,
+      observacion: this.formPago.get('observacion')?.value,
+    }
+    console.log(miPago)
+    
+
+    this.formPago.reset()
+    this.cargaPago = false
+    
+  }
+
+
 
 }

@@ -62,19 +62,20 @@ export class CrearClienteComponent {
 
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
-    this._clienteService.createClient(client).then(() => {
-      this._snackBar.open('El cliente fue agregado con exito', '', {
-        duration: 1500,
-        horizontalPosition: 'center',
-      })
-      setTimeout(() => {
-        this.router.navigate(['clientes'])
-      }, 2000);
+      this._clienteService.createClient(client).then(() => {
+        this._snackBar.open('El cliente fue agregado con exito', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+        })
+        setTimeout(() => {
+          this.router.navigate(['clientes'])
+        }, 2000);
+          
+      }, error => {
+        console.log(error)
         
-    }, error => {
-      console.log(error)
-      
-    })
+      })
+
   }
   else{
     if (this.id!==null){
