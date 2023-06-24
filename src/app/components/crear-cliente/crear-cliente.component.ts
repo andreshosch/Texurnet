@@ -60,50 +60,21 @@ export class CrearClienteComponent {
       historico: []
     }
     let prueba=window.location;
-    let chequeo=true
-
-
-    let clientes=[]
-    let flag=false
     if(prueba.href=="http://localhost:4200/crearCliente"){
-      this._clienteService.getClients().subscribe((data)=>{
-        data.forEach((element:any)=>{
-          clientes.push(element.payload.doc.data().nroSerie)
-         
+      this._clienteService.createClient(client).then(() => {
+        this._snackBar.open('El cliente fue agregado con exito', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
         })
+        setTimeout(() => {
+          this.router.navigate(['clientes'])
+        }, 2000);
+          
+      }, error => {
+        console.log(error)
         
-
-      for(let i=0; i<clientes.length;i++){
-        console.log((clientes[i]=== client.nroSerie))
-        if(clientes[i]=== client.nroSerie){
-         flag=true
-         
-        }
-      }
       })
- 
-     if(flag){
-      console.log("ya existe el cliente")
-     }
 
-     
-    
-    else{
-    this._clienteService.createClient(client).then(() => {
-      this._snackBar.open('El cliente fue agregado con exito', '', {
-        duration: 1500,
-        horizontalPosition: 'center',
-      })
-      setTimeout(() => {
-        this.router.navigate(['clientes'])
-      }, 2000);
-        
-    }, error => {
-      console.log(error)
-      
-    })
-  }
-   
   }
   else{
     if (this.id!==null){
