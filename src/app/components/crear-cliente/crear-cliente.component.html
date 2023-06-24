@@ -6,9 +6,9 @@
 
     <mat-card style="margin-top: 30px;">
         <form [formGroup]="form" (ngSubmit)="agregarCliente()">
-            <mat-grid-list cols="4" rowHeight="70px">
+            <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 80px;">
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <mat-form-field class="ancho">
+                    <mat-form-field class="ancho" >
                         <mat-label>Nombre</mat-label>
                         <input matInput autocomplete="off" formControlName="nombre">
                     </mat-form-field>
@@ -61,17 +61,17 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="4" [rowspan]="2">
                     
-                    <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()">Editar</button>
-                    <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px" *ngIf="!botonVisible">Aceptar</button>
-                    <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
+                    <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()"style="margin-left: 80%; margin-top:7% ;">Editar</button>
+                    <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 80%;margin-top:7% ;" *ngIf="!botonVisible">Aceptar</button>
+                    <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;margin-top:7%" routerLink="/clientes">Volver</button>
                 </mat-grid-tile>
             </mat-grid-list>        
         </form>
     </mat-card>
 
-    <!-- <div class="confirmation-dialog" *ngIf="showConfirmationDialog">
+     <!-- <div class="confirmation-dialog" *ngIf="showConfirmationDialog">
         
-    </div> -->
+    </div>  -->
 
 </div>
 <app-footer></app-footer>

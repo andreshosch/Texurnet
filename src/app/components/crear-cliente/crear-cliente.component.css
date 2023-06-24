@@ -4,6 +4,7 @@
 
 .container {
     margin-top: 5px;
+    height: 100vh; 
 }
 
 img {
@@ -30,4 +31,7 @@ img {
 
 .zindex{
     z-index: 9;
+}
+.container{
+    margin-top: 5%;
 }

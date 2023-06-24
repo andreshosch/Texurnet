@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-
+<div class="container">
 <table mat-table [dataSource]="dataSource2" matSort>
 
     <ng-container matColumnDef="Cliente">
@@ -67,7 +67,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <br><br><br>
-<button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" (click)="showModalPago()">Agregar Pago</button>
+<button class="zindex" mat-raised-button color="primary" style="margin-left: 80%;" (click)="showModalPago()">Agregar Pago</button>
 <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
 <br><br><br>
 
@@ -116,5 +116,5 @@
 
     </div>
 </div>
-
+</div>
 <app-footer></app-footer>
