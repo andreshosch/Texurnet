@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FormBuilder,FormControl,FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente} from 'src/app/models/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { Pago } from 'src/app/models/pago';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-crear-cliente',
@@ -11,6 +13,12 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./crear-cliente.component.css']
 })
 export class CrearClienteComponent {
+  cargaPago: boolean = false
+  formPago:FormGroup
+  displayedColumns: string[] = ['TipoMoneda', 'Monto','Cotizacion','Equivalencia','Fecha','Observaciones'];
+  dataSource!: MatTableDataSource<Pago>;
+  listPagos: Pago[] = []
+
   form:FormGroup
   loading=false
   titulo='Crear Cliente';
@@ -33,10 +41,20 @@ export class CrearClienteComponent {
       tipoLicencia:['',Validators.required],
       nroSerie:['',Validators.required],
       password:['',Validators.required],
-      fechaLicencia:['',Validators.required]
+      fechaLicencia:['',Validators.required],
+      observaciones:[''],
+      costo:['',Validators.required],
+      saldo:['']
     })
     this.id = this.aRouter.snapshot.paramMap.get('id');
   
+    this.formPago = new FormGroup({
+      tipoMoneda: new FormControl(),
+      montoDolar: new FormControl(),
+      montoPesos: new FormControl(),
+      cotizacionActual: new FormControl(),
+      observacion: new FormControl()
+    })
   }
 
   ngOnInit(): void {
@@ -53,11 +71,10 @@ export class CrearClienteComponent {
       nroSerie: this.form.get('nroSerie')?.value,
       password: this.form.get('password')?.value,
       fechaLicencia: this.form.get('fechaLicencia')?.value,
-      montoAcumulado:0,
-      montoInicial:0,
-      observaciones:" ",
-      productoActual: [],
-      historico: []
+      observaciones: this.form.get('observaciones')?.value,
+      saldo:this.form.get('costo')?.value,
+      costo:this.form.get('costo')?.value,
+      productoActual: this.listPagos
     }
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
@@ -96,6 +113,14 @@ export class CrearClienteComponent {
   }
 }
 
+calcularSaldo(costo, pagos): number{
+  let resultado = costo
+  for (let i=0; i < pagos.length; i++){
+    resultado = resultado - pagos[i].equivalencia;
+  }
+  return resultado
+}
+
   editarCliente(){
     if (this.id !== null) {
       this.titulo = 'Datos Cliente'
@@ -108,9 +133,13 @@ export class CrearClienteComponent {
           tipoLicencia: data.tipoLicencia,
           nroSerie: data.nroSerie,
           password: data.password,
-          fechaLicencia:data.fechaLicencia.toDate()
+          fechaLicencia:data.fechaLicencia.toDate(),
+          observaciones: data.observaciones,
+          costo: data.costo,
+          saldo: this.calcularSaldo(data.costo, data.productoActual)
         })
-        //Aca en 2 variables metemos el actual y el historico
+        this.listPagos= data.productoActual
+        this.dataSource = new MatTableDataSource(this.listPagos)
       })
     }
   }
@@ -119,6 +148,53 @@ export class CrearClienteComponent {
     this.botonVisible = !this.botonVisible;
     this.showConfirmationDialog=false;
   }
+
+  agregarPago(){
+
+
+    let elMonto = 0
+    let laCotizacion = 0
+    if(this.formPago.get('tipoMoneda')?.value == 'Dolar'){
+      elMonto = this.formPago.get('montoDolar')?.value
+      laCotizacion = 1;
+    }
+    else {
+      elMonto = this.formPago.get('montoPesos')?.value
+      laCotizacion = this.formPago.get('cotizacionActual')?.value
+    }
+
+    const miPago: Pago = {
+      moneda: this.formPago.get('tipoMoneda')?.value,
+      monto: elMonto,
+      cotizacion: laCotizacion,
+      equivalencia: elMonto / laCotizacion,
+      fecha: new Date,
+      observacion: this.formPago.get('observacion')?.value,
+    }
+    console.log(miPago)
+    
+    this.listPagos.push(miPago)  
+    this.dataSource = new MatTableDataSource(this.listPagos)
+
+    ////////////
+    this.agregarCliente()
+    ////////////
+
+    this.formPago.reset()
+    this.cargaPago = false
+    
+  }
+
+  showModalPago(){
+    this.cargaPago= true;
+  }
+
+  closeModalPago(){
+    this.cargaPago= false;
+  }
+
+
+
 } 
 
 
