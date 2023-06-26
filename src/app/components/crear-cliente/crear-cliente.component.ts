@@ -76,6 +76,7 @@ export class CrearClienteComponent {
       costo:this.form.get('costo')?.value,
       productoActual: this.listPagos
     }
+
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.createClient(client).then(() => {

@@ -4,6 +4,7 @@
 
 .container {
     margin-top: 5px;
+    height: 100vh; 
 }
 
 img {
@@ -31,6 +32,7 @@ img {
 .zindex{
     z-index: 9;
 }
+<<<<<<< HEAD
 
 .ladoIzquierdo{
     width: 50%;
@@ -95,4 +97,8 @@ img {
 
 .botonesModal{
     text-align: center;
+=======
+.container{
+    margin-top: 5%;
+>>>>>>> f7c5545288c1f49a3c1e34f7d95278dfb76185a3
 }

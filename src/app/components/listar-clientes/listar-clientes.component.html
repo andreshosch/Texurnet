@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="container">
     <mat-toolbar>
         <span class="clienteIzq">Clientes</span><span class="clienteDer" *ngIf="hayLicenciasAlLimite">Atención: existen
@@ -6,59 +7,60 @@
         <div class="example-spacer"> </div>
         <button mat-raised-button color="primary" routerLink="/crearCliente">Agregar</button>
     </mat-toolbar>
+ 
     <div *ngIf="listClientes.length>0">
-        <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Búsqueda clientes" #input autocomplete="off">
+        <mat-form-field style="margin-top: 20px;">
+            <mat-label>Búsqueda de Clientes</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input autocomplete="off">
         </mat-form-field>
         <div class="mat-elevation-z8">
 
 
             <table mat-table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="nombre">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;"> Nombre </th>
                     <td  [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element">{{element.nombre}} </td>
 
                 </ng-container>
 
                 <ng-container matColumnDef="apellido">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;"> Apellido </th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.apellido}} </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="ciudad">
-                    <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Ciudad</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.ciudad}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="tipoLicencia">
+                <ng-container matColumnDef="tipoLicencia" style="background-color:#3f51b5;color: white;">
                     <th mat-header-cell *matHeaderCellDef>Tipo Licencia</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.tipoLicencia}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="nroSerie">
-                    <th mat-header-cell *matHeaderCellDef>Nro Serie</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Nro Serie</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.nroSerie}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="password">
-                    <th mat-header-cell *matHeaderCellDef>Contraseña</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Contraseña</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.password}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="tiempo">
-                    <th mat-header-cell *matHeaderCellDef>Tiempo</th>
+                    <th mat-header-cell *matHeaderCellDef  style="background-color:#3f51b5;color: white;">Tiempo</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.tiempo}} </td>
                 </ng-container>
-                <ng-container matColumnDef="fechaLicencia">
-                    <th mat-header-cell *matHeaderCellDef>Fecha Licencia</th>
+                <ng-container matColumnDef="fechaLicencia" >
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Fecha Licencia</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{formatoFecha(element.fechaLicencia.toDate())}} </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="acciones">
-                    <th mat-header-cell *matHeaderCellDef class="colorColumna">Acciones</th>
+                    <th mat-header-cell *matHeaderCellDef class="colorColumna"style="background-color:#3f51b5;color: white;">Acciones</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element;let i=index">
                         <!-- <a class="pointer" [routerLink]="['/cliente', element.id]" style="color: grey;"
                             matTooltip="Ver Usuario">
@@ -90,10 +92,9 @@
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="">
             </mat-paginator>
+            <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">Volver</button>
         </div>
     </div>
-
-    <h2 *ngIf="listClientes.length==0 ;hayLicenciasAlLimite" >No hay usuarios para mostrar</h2>
-    <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">Volver</button>
+    <h2 *ngIf="listClientes.length==0 ;hayLicenciasAlLimite" >No se encontraron clientes para mostrar</h2>
 </div>
 <app-footer></app-footer>

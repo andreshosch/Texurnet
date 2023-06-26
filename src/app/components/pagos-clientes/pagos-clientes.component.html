@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+<table mat-table [dataSource]="dataSource2" matSort>
+
+    <ng-container matColumnDef="Cliente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+        <td mat-cell *matCellDef="let element">{{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Producto </th>
+        <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Costo">
+        <th mat-header-cell *matHeaderCellDef>Costo</th>
+        <td mat-cell *matCellDef="let element"> {{element.costo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Saldo">
+        <th mat-header-cell *matHeaderCellDef>Saldo</th>
+        <td mat-cell *matCellDef="let element"> {{element.costo - element.suma}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+</table>
+
+<br><br><br>
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="TipoMoneda">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Moneda </th>
+        <td mat-cell *matCellDef="let element">{{element.moneda}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Monto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+        <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cotizacion">
+        <th mat-header-cell *matHeaderCellDef>Cotizacion</th>
+        <td mat-cell *matCellDef="let element"> {{element.cotizacion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Equivalencia">
+        <th mat-header-cell *matHeaderCellDef>Equivalencia</th>
+        <td mat-cell *matCellDef="let element"> {{element.monto / element.cotizacion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Observaciones">
+        <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+        <td mat-cell *matCellDef="let element"> {{element.observacion}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br><br><br>
+<button class="zindex" mat-raised-button color="primary" style="margin-left: 80%;" (click)="showModalPago()">Agregar Pago</button>
+<button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
+<br><br><br>
+
+<div *ngIf="cargaPago" class="confirmation-dialog">
+    <div class="modalAddPago">
+        <h4>Agregar Pago</h4>
+        <form [formGroup]="formPago" (ngSubmit)="agregarPago()">
+            <mat-form-field class="ancho">
+                <mat-label>Tipo de Moneda</mat-label>
+                <input matInput autocomplete="off" formControlName="tipoMoneda">
+                <!-- <select matNativeControl autocomplete="off" formControlName="tipoMoneda">
+                    <option value="montoDolar">Dolar</option>
+                    <option value="montoPesos">Pesos</option>
+                </select> -->
+            </mat-form-field>
+
+            <mat-form-field class="ancho">
+                <mat-label>Monto Dolares</mat-label>
+                <input matInput autocomplete="off" formControlName="montoDolar">
+            </mat-form-field>
+
+            <mat-form-field class="ancho">
+                <mat-label>Monto Pesos</mat-label>
+                <input matInput autocomplete="off" formControlName="montoPesos">
+            </mat-form-field>
+
+            <mat-form-field class="ancho">
+                <mat-label>Cotizacion actual</mat-label>
+                <input matInput autocomplete="off" formControlName="cotizacionActual">
+            </mat-form-field>
+
+            <mat-form-field class="ancho">
+                <mat-label>Observación</mat-label>
+                <input matInput autocomplete="off" formControlName="observacion">
+            </mat-form-field>
+
+            <div class="botonesModal">
+                <button type="submit"mat-raised-button color="primary" style="margin-left: 20px" >Aceptar</button>
+                <button (click)="closeModalPago()" mat-raised-button color="primary" style="margin-left: 20px" >Cancelar</button>
+            </div>
+            
+        </form>
+
+
+          
+
+    </div>
+</div>
+</div>
+<app-footer></app-footer>
