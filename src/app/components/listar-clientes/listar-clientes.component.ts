@@ -132,7 +132,7 @@ confirm(){
           return '#FF4D4D'
         }
         else if(dia < 0){
-          return 'FFE14D'
+          return '#FFE14D'
         } else if(dia < 16){
           return '#FF884D'
         }else if(dia < 31){
