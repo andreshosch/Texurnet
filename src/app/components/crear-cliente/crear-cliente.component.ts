@@ -19,6 +19,9 @@ export class CrearClienteComponent {
   dataSource!: MatTableDataSource<Pago>;
   listPagos: Pago[] = []
 
+  hayCliente: boolean = false;
+  conversion: boolean = true;
+
   form:FormGroup
   loading=false
   titulo='Crear Cliente';
@@ -44,8 +47,10 @@ export class CrearClienteComponent {
       fechaLicencia:['',Validators.required],
       observaciones:[''],
       costo:['',Validators.required],
+
       saldo:['']
     })
+
     this.id = this.aRouter.snapshot.paramMap.get('id');
   
     this.formPago = new FormGroup({
@@ -96,6 +101,7 @@ export class CrearClienteComponent {
   }
   else{
     if (this.id!==null){
+      this.hayCliente= true
       this._clienteService.updateClient(this.id,client).then(data=>{
         this._snackBar.open('El cliente fue actualizado con exito', '', {
           duration: 1500,
@@ -124,6 +130,7 @@ calcularSaldo(costo, pagos): number{
 
   editarCliente(){
     if (this.id !== null) {
+      this.hayCliente = true
       this.titulo = 'Datos Cliente'
       this.botonVisible=true
       this._clienteService.getClientsById(this.id).subscribe(data => {
@@ -194,7 +201,11 @@ calcularSaldo(costo, pagos): number{
     this.cargaPago= false;
   }
 
-
+  // actualizarConversion(valorSeleccionado) {
+  //   console.log(valorSeleccionado)
+  //   this.conversion = ("Dolar" === valorSeleccionado);
+  //   console.log(this.conversion)
+  // }
 
 } 
 
