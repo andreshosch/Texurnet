@@ -83,12 +83,12 @@
                    
                 </mat-grid-list>    
                
-            
+                <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-bottom: 40px;">Volver</button>    
+                <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()"style="margin-left: 20px;float: right;margin-bottom: 40px;">Editar</button>
+                <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;"  *ngIf="!botonVisible">Aceptar</button>
             </form>
         </mat-card>
-        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-top: 20px;">Volver</button>    
-        <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()"style="margin-left: 20px;float: right;margin-top: 20px;">Editar</button>
-        <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="float: right;margin-top: 20px;"  *ngIf="!botonVisible">Aceptar</button>
+       
        
     
     </div></mat-tab>
