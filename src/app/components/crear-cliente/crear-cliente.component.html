@@ -9,7 +9,7 @@
     
         <mat-card style="margin-top: 30px;">
             <form [formGroup]="form" (ngSubmit)="agregarCliente()">
-                <mat-grid-list cols="4" rowHeight="70px">
+                <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 10%;">
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Nombre</mat-label>
@@ -83,10 +83,10 @@
                     
                     
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="4" [rowspan]="2">
+                    <mat-grid-tile [colspan]="4" [rowspan]="2" style="float: r;">
                         
                         <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()">Editar</button>
-                        <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px" *ngIf="!botonVisible">Aceptar</button>
+                        <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-left: 20px"  *ngIf="!botonVisible">Aceptar</button>
                         <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes">Volver</button>
                     </mat-grid-tile>
                 </mat-grid-list>        
@@ -122,7 +122,7 @@
             
                 <ng-container matColumnDef="Fecha">
                     <th mat-header-cell *matHeaderCellDef>Fecha</th>
-                    <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    <td mat-cell *matCellDef="let element"> {{formatoFecha(element.fecha.toDate())}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Observaciones">
@@ -137,7 +137,7 @@
         </mat-card>
 
         
-        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" (click)="showModalPago()">Agregar Pago</button>
+        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;float: right; margin-top: 10px;" (click)="showModalPago()">Agregar Pago</button>
         <br>
         <div *ngIf="cargaPago" class="confirmation-dialog">
             <div class="modalAddPago">

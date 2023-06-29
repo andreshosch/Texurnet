@@ -7,6 +7,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { Pago } from 'src/app/models/pago';
 import { MatTableDataSource } from '@angular/material/table';
 
+
 @Component({
   selector: 'app-crear-cliente',
   templateUrl: './crear-cliente.component.html',
@@ -199,6 +200,13 @@ calcularSaldo(costo, pagos): number{
 
   closeModalPago(){
     this.cargaPago= false;
+  }
+
+  formatoFecha(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    return `${day}/${month}/${year}`;
   }
 
   // actualizarConversion(valorSeleccionado) {

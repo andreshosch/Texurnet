@@ -30,31 +30,12 @@
 
 
                 <ng-container matColumnDef="ciudad">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Ciudad</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">Ciudad</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.ciudad}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="tipoLicencia" style="background-color:#3f51b5;color: white;">
-                    <th mat-header-cell *matHeaderCellDef>Tipo Licencia</th>
-                    <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.tipoLicencia}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="nroSerie">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Nro Serie</th>
-                    <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.nroSerie}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="password">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Contraseña</th>
-                    <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.password}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="tiempo">
-                    <th mat-header-cell *matHeaderCellDef  style="background-color:#3f51b5;color: white;">Tiempo</th>
-                    <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{element.tiempo}} </td>
-                </ng-container>
                 <ng-container matColumnDef="fechaLicencia" >
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Fecha Licencia</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">Fecha Licencia</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{formatoFecha(element.fechaLicencia.toDate())}} </td>
                 </ng-container>
 

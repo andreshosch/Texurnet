@@ -47,8 +47,7 @@ body{
   .buttonVolver{
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 92.7%;
-    text-align: right;
+    float: right;
   }
   .confirmation-dialog {
     z-index: 9;
