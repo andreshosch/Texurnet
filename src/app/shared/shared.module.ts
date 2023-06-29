@@ -48,7 +48,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatGridListModule,
     MatSelectModule,
     MatTabsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   exports: [
     MatSlideToggleModule,

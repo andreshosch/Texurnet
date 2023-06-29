@@ -7,11 +7,10 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { Pago } from 'src/app/models/pago';
 import { MatTableDataSource } from '@angular/material/table';
 
-
 @Component({
   selector: 'app-crear-cliente',
   templateUrl: './crear-cliente.component.html',
-  styleUrls: ['./crear-cliente.component.css']
+  styleUrls: ['./crear-cliente.component.css'],
 })
 export class CrearClienteComponent {
   cargaPago: boolean = false
@@ -33,6 +32,8 @@ export class CrearClienteComponent {
   botonbloqueado=true;
   botonVisible=false
   showConfirmationDialog= true
+  matTab=false
+  
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
     this.minimo = new Date(); 
@@ -85,6 +86,7 @@ export class CrearClienteComponent {
 
     let prueba=window.location;
     if(prueba.href=="http://localhost:4200/crearCliente"){
+     
       this._clienteService.createClient(client).then(() => {
         this._snackBar.open('El cliente fue agregado con exito', '', {
           duration: 1500,
@@ -101,8 +103,10 @@ export class CrearClienteComponent {
 
   }
   else{
+   
     if (this.id!==null){
       this.hayCliente= true
+      
       this._clienteService.updateClient(this.id,client).then(data=>{
         this._snackBar.open('El cliente fue actualizado con exito', '', {
           duration: 1500,
