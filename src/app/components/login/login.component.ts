@@ -27,6 +27,8 @@ export class LoginComponent {
     const password = this.form.value.password;
     if (usuario == "admin" && password == "pass123") {
       this.fakeLoggin();
+    } else if (usuario == "invitado" && password == "invitado") {
+      this.loginInvitado();
     }
     else {
       this.error();
@@ -47,6 +49,14 @@ export class LoginComponent {
       this.router.navigate(['home'])
     }, 1500);
   }
+
+  loginInvitado(){
+    this.loading = true
+    setTimeout(() => {
+      this.router.navigate(['invitado'])
+    }, 1500);
+  }
+
 }
 
 

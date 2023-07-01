@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './components/listar-clientes/listar-clientes.component';
 import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.component';
 import { HomeComponent } from './components/home/home.component';
+import { InvitadoComponent } from './components/invitado/invitado.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'clientes',component:ClienteComponent},
   {path:'crearCliente',component:CrearClienteComponent},
   {path:'verCliente/:id',component:CrearClienteComponent},
+  {path: 'invitado', component: InvitadoComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
 ];
 

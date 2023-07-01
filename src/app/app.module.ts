@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import localeArEG from '@angular/common/locales/ar-EG';
 import { registerLocaleData } from '@angular/common';
+import { InvitadoComponent } from './components/invitado/invitado.component';
 
 
 registerLocaleData(localeArEG);
@@ -30,7 +31,8 @@ registerLocaleData(localeArEG);
     ClienteComponent,
     CrearClienteComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    InvitadoComponent
     
   ],
   imports: [

@@ -1,0 +1,46 @@
+table {
+    margin: 0 auto;
+     
+ }
+ 
+ th {
+     width: 13%;
+ }
+ 
+ h2{
+   color: red;
+   text-align: center;
+   margin-top: 10%;
+ }
+ 
+ .pointer {
+     cursor: pointer;
+ }
+ 
+ mat-form-field {
+     font-size: 14px;
+     width: 100%;
+ }
+ body{
+     height: 100%;
+     margin: 0;
+     padding: 0;
+    }
+   
+    .container {
+     position: relative;
+     min-height: 100vh;
+     margin-top: 5%;
+   }
+ 
+   .clienteIzq{
+     width: 20%;
+   }
+ 
+   .clienteDer{
+     width: 50%;
+     color: red;
+     text-align: center;
+     margin-left: 5%;
+   }
+ 
