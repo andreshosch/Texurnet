@@ -152,6 +152,5 @@ confirm(){
         const year = date.getFullYear().toString();
         return `${day}/${month}/${year}`;
       }
-
 }
 

@@ -32,7 +32,8 @@ export class CrearClienteComponent {
   botonbloqueado=true;
   botonVisible=false
   showConfirmationDialog= true
-  matTab=false
+  ocultarMatTab=true
+  prueba=window.location;
   
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
@@ -66,6 +67,7 @@ export class CrearClienteComponent {
 
   ngOnInit(): void {
     this.editarCliente();
+    this.mostrartab()
   }
 
   agregarCliente() {
@@ -83,10 +85,7 @@ export class CrearClienteComponent {
       costo:this.form.get('costo')?.value,
       productoActual: this.listPagos
     }
-
-    let prueba=window.location;
-    if(prueba.href=="http://localhost:4200/crearCliente"){
-     
+    if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.createClient(client).then(() => {
         this._snackBar.open('El cliente fue agregado con exito', '', {
           duration: 1500,
@@ -211,6 +210,15 @@ calcularSaldo(costo, pagos): number{
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear().toString();
     return `${day}/${month}/${year}`;
+  }
+
+  mostrartab(){
+    if(this.prueba.href=="http://localhost:4200/crearCliente"){
+    this.ocultarMatTab=false
+    }
+    else{
+      this.ocultarMatTab=true
+    }
   }
 
   // actualizarConversion(valorSeleccionado) {

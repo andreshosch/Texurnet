@@ -92,7 +92,7 @@
        
     
     </div></mat-tab>
-    <mat-tab label="Pagos"> <div class="ladoDerecho container" *ngIf="hayCliente" >
+    <mat-tab label="Pagos" *ngIf="ocultarMatTab"> <div class="ladoDerecho container" *ngIf="hayCliente" >
         <mat-card style="margin-top: 30px;">
             <!-- <h4 style="text-align: center;">Pagos realizados</h4> -->
             <table mat-table [dataSource]="dataSource" matSort>
