@@ -142,23 +142,23 @@
                 <form [formGroup]="formPago" (ngSubmit)="agregarPago()">
                     <mat-form-field class="ancho">
                         <mat-label>Tipo de Moneda</mat-label>
-                        <select matNativeControl autocomplete="off" formControlName="tipoMoneda">
+                        <select [(ngModel)]="selectOption" matNativeControl autocomplete="off" formControlName="tipoMoneda">
                             <option value="Dolar">Dolar</option>
                             <option value="Pesos">Pesos</option>
                         </select>
                     </mat-form-field>
         
-                    <mat-form-field class="ancho">
+                    <mat-form-field class="ancho" *ngIf="selectOption!=='Pesos'">
                         <mat-label>Monto Dolares</mat-label>
                         <input matInput autocomplete="off" formControlName="montoDolar">
                     </mat-form-field>
         
-                    <mat-form-field class="ancho">
+                    <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
                         <mat-label>Monto Pesos</mat-label>
                         <input matInput autocomplete="off" formControlName="montoPesos">
                     </mat-form-field>
 
-                    <mat-form-field class="ancho">
+                    <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
                         <mat-label>Cotizacion actual</mat-label>
                         <input matInput autocomplete="off" formControlName="cotizacionActual">
                     </mat-form-field>

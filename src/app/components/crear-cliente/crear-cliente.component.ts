@@ -34,6 +34,7 @@ export class CrearClienteComponent {
   showConfirmationDialog= true
   ocultarMatTab=true
   prueba=window.location;
+  selectOption:string;
   
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
