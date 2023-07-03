@@ -165,22 +165,26 @@ calcularSaldo(costo, pagos): number{
   agregarPago(){
 
 
-    let elMonto = 0
-    let laCotizacion = 0
+    let elMonto 
+    let laCotizacion 
+    let equivalencia
+    
     if(this.formPago.get('tipoMoneda')?.value == 'Dolar'){
       elMonto = this.formPago.get('montoDolar')?.value
-      laCotizacion = 1;
+      laCotizacion = '-';
+      equivalencia=(elMonto) 
     }
     else {
       elMonto = this.formPago.get('montoPesos')?.value
       laCotizacion = this.formPago.get('cotizacionActual')?.value
+      equivalencia=elMonto/laCotizacion
     }
 
     const miPago: Pago = {
       moneda: this.formPago.get('tipoMoneda')?.value,
       monto: elMonto,
       cotizacion: laCotizacion,
-      equivalencia: elMonto / laCotizacion,
+      equivalencia: equivalencia,
       fecha: new Date,
       observacion: this.formPago.get('observacion')?.value,
     }
