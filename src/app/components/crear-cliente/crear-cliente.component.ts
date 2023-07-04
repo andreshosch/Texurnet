@@ -36,6 +36,7 @@ export class CrearClienteComponent {
   prueba=window.location;
   selectOption:string;
   modalSaldo=false
+  hideSaldo=false
   
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
@@ -74,6 +75,7 @@ export class CrearClienteComponent {
 
   agregarCliente() {
     this.showConfirmationDialog= false
+    this.hideSaldo=false
     const client: Cliente = {
       nombre: this.form.get('nombre')?.value,
       apellido: this.form.get('apellido')?.value,
@@ -140,6 +142,7 @@ calcularSaldo(costo, pagos): number{
   editarCliente(){
     if (this.id !== null) {
       this.hayCliente = true
+      this.hideSaldo=true
       this.titulo = 'Datos Cliente'
       this.botonVisible=true
       this._clienteService.getClientsById(this.id).subscribe(data => {
