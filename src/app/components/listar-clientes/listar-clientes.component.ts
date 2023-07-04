@@ -91,7 +91,7 @@ eliminarCliente(id: any){
   }
 confirm(){
   this._clienteService.deleteClient(this.idDelete).then(()=>{
-    this._snackBar.open('El usuario ha sido eliminado correctamente', '', {
+    this._snackBar.open('El cliente ha sido eliminado correctamente', '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'

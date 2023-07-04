@@ -29,15 +29,13 @@ export class CrearClienteComponent {
   listClientes:Cliente[]=[]
   minimo:Date
   maximo:Date
-  botonbloqueado=true;
-  botonVisible=false
   showConfirmationDialog= true
   ocultarMatTab=true
   prueba=window.location;
   selectOption:string;
   modalSaldo=false
   hideSaldo=false
-  
+  saldoBloq=true  
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
     this.minimo = new Date(); 
@@ -117,9 +115,6 @@ export class CrearClienteComponent {
           horizontalPosition: 'center',
         })
           this.listClientes=data
-          setTimeout(() => {
-            this.router.navigate(['clientes'])
-          }, 2000);
       }, error => {
         console.log(error)
         
@@ -131,52 +126,107 @@ export class CrearClienteComponent {
     }
   }
 }
+  createPago() {
+    {
+      this.showConfirmationDialog = false
+      this.hideSaldo = false
+      const client: Cliente = {
+        nombre: this.form.get('nombre')?.value,
+        apellido: this.form.get('apellido')?.value,
+        ciudad: this.form.get('ciudad')?.value,
+        tipoLicencia: this.form.get('tipoLicencia')?.value,
+        nroSerie: this.form.get('nroSerie')?.value,
+        password: this.form.get('password')?.value,
+        fechaLicencia: this.form.get('fechaLicencia')?.value,
+        observaciones: this.form.get('observaciones')?.value,
+        saldo: this.form.get('costo')?.value,
+        costo: this.form.get('costo')?.value,
+        productoActual: this.listPagos
+      }
+      if (this.prueba.href == "http://localhost:4200/crearCliente") {
+        this._clienteService.createClient(client).then(() => {
 
-createDeletePago(){
-  {
-    this.showConfirmationDialog= false
-    this.hideSaldo=false
-    const client: Cliente = {
-      nombre: this.form.get('nombre')?.value,
-      apellido: this.form.get('apellido')?.value,
-      ciudad: this.form.get('ciudad')?.value,
-      tipoLicencia: this.form.get('tipoLicencia')?.value,
-      nroSerie: this.form.get('nroSerie')?.value,
-      password: this.form.get('password')?.value,
-      fechaLicencia: this.form.get('fechaLicencia')?.value,
-      observaciones: this.form.get('observaciones')?.value,
-      saldo:this.form.get('costo')?.value,
-      costo:this.form.get('costo')?.value,
-      productoActual: this.listPagos
-    }
-    if(this.prueba.href=="http://localhost:4200/crearCliente"){
-      this._clienteService.createClient(client).then(() => {
-          
-      }, error => {
-        console.log(error)
-      })
+        }, error => {
+          console.log(error)
+        })
 
-  }
-  else{
-   
-    if (this.id!==null){
-      this.hayCliente= true
-      this.hideSaldo=true
-      if(this.calcularSaldo(client.costo, client.productoActual)>=0){
-      this._clienteService.updateClient(this.id,client).then(data=>{
-          this.listClientes=data
-      }, error => {
-        console.log(error)
-        
-      })
+      }
+      else {
+
+        if (this.id !== null) {
+          this.hayCliente = true
+          this.hideSaldo = true
+          if (this.calcularSaldo(client.costo, client.productoActual) >= 0) {
+            this._clienteService.updateClient(this.id, client).then(data => {
+              this.listClientes = data
+              
+                this._snackBar.open('El pago fue agregado exitosamente!', '', {
+                  duration: 1500,
+                  horizontalPosition: 'center',
+                })
+            }, error => {
+              console.log(error)
+
+            })
+          }
+          else {
+            this.modalSaldo = true
+          }
+        }
+      }
     }
-    else{
-      this.modalSaldo=true
-    }  
+  }
+
+  deletePago() {
+    {
+      this.showConfirmationDialog = false
+      this.hideSaldo = false
+      const client: Cliente = {
+        nombre: this.form.get('nombre')?.value,
+        apellido: this.form.get('apellido')?.value,
+        ciudad: this.form.get('ciudad')?.value,
+        tipoLicencia: this.form.get('tipoLicencia')?.value,
+        nroSerie: this.form.get('nroSerie')?.value,
+        password: this.form.get('password')?.value,
+        fechaLicencia: this.form.get('fechaLicencia')?.value,
+        observaciones: this.form.get('observaciones')?.value,
+        saldo: this.form.get('costo')?.value,
+        costo: this.form.get('costo')?.value,
+        productoActual: this.listPagos
+      }
+      if (this.prueba.href == "http://localhost:4200/crearCliente") {
+        this._clienteService.createClient(client).then(() => {
+
+        }, error => {
+          console.log(error)
+        })
+
+      }
+      else {
+
+        if (this.id !== null) {
+          this.hayCliente = true
+          this.hideSaldo = true
+          if (this.calcularSaldo(client.costo, client.productoActual) >= 0) {
+            this._clienteService.updateClient(this.id, client).then(data => {
+              this.listClientes = data
+              
+                this._snackBar.open('El pago fue eliminado exitosamente!', '', {
+                  duration: 1500,
+                  horizontalPosition: 'center',
+                })
+            }, error => {
+              console.log(error)
+
+            })
+          }
+          else {
+            this.modalSaldo = true
+          }
+        }
+      }
     }
   }
-}
-}
 
 calcularSaldo(costo, pagos): number{
   let resultado = costo
@@ -191,7 +241,6 @@ calcularSaldo(costo, pagos): number{
       this.hayCliente = true
       this.hideSaldo=true
       this.titulo = 'Datos Cliente'
-      this.botonVisible=true
       this._clienteService.getClientsById(this.id).subscribe(data => {
         this.form.setValue({
           nombre: data.nombre,
@@ -209,11 +258,6 @@ calcularSaldo(costo, pagos): number{
         this.dataSource = new MatTableDataSource(this.listPagos)
       })
     }
-  }
-
-  ocultarMostrarBotones() {
-    this.botonVisible = !this.botonVisible;
-    this.showConfirmationDialog=false;
   }
 
   agregarPago(){
@@ -244,11 +288,7 @@ calcularSaldo(costo, pagos): number{
     this.dataSource = new MatTableDataSource(this.listPagos)  
    
     ////////////
-    this.createDeletePago()
-     this._snackBar.open('pago agregado exitosamente!', '', {
-           duration: 1500,
-           horizontalPosition: 'center',
-         })
+    this.createPago()
     ////////////
 
     this.formPago.reset()
@@ -305,11 +345,9 @@ calcularSaldo(costo, pagos): number{
     }
     this.listPagos.splice(resuelve, 1)
     this.dataSource = new MatTableDataSource(this.listPagos)
-    this.createDeletePago()
-    this._snackBar.open('pago eliminado exitosamente!', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-    })
+    this.deletePago()
+     
+    
   }
 } 
 
