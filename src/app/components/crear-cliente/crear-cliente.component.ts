@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CrearClienteComponent {
   cargaPago: boolean = false
   formPago:FormGroup
-  displayedColumns: string[] = ['TipoMoneda', 'Monto','Cotizacion','Equivalencia','Fecha','Observaciones'];
+  displayedColumns: string[] = ['TipoMoneda', 'Monto','Cotizacion','Equivalencia','Fecha','Observaciones','Acciones'];
   dataSource!: MatTableDataSource<Pago>;
   listPagos: Pago[] = []
 
@@ -247,6 +247,19 @@ calcularSaldo(costo, pagos): number{
   //   console.log(this.conversion)
   // }
 
+
+  eliminarPagos(element){
+    let resuelve = 0;
+    for(let j =0; j < this.listPagos.length; j++){
+      if(this.listPagos[j].monto == element.monto){
+        resuelve = j;
+        j = this.listPagos.length
+      }
+    }
+    this.listPagos.splice(resuelve, 1)
+    this.dataSource = new MatTableDataSource(this.listPagos)
+    this.agregarCliente()
+  }
 } 
 
 
