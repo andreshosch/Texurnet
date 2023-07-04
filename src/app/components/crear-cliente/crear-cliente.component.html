@@ -128,7 +128,14 @@
                     <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Observaciones</th>
                     <td mat-cell *matCellDef="let element"> {{element.observacion}} </td>
                 </ng-container>
-            
+                
+                <ng-container matColumnDef="Acciones">
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button (click)="eliminarPagos(element)">Eliminar</button>
+                     
+                    </td>
+                </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -175,9 +182,6 @@
                         <button type="submit"mat-raised-button color="primary" style="margin-left: 20px" >Aceptar</button>
                         <button (click)="closeModalPago()" mat-raised-button color="primary" style="margin-left: 20px" >Cancelar</button>
                     </div>
-
-
-                    
                 </form>
             </div>
         </div>
