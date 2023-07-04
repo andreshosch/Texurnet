@@ -5,8 +5,8 @@
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="0ms" style="margin-top: 2%;">
     <mat-tab label="Datos"><div class="ladoIzquierdo container">
         <mat-card style="margin-top: 30px;">
-            <form [formGroup]="form" (ngSubmit)="agregarCliente()">
-                <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 5%;">
+            <form [formGroup]="form" (ngSubmit)="agregarCliente()" class="shadowForm">
+                <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 8%; margin-right: 6%;">
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Nombre</mat-label>
@@ -83,7 +83,7 @@
                    
                 </mat-grid-list>    
                
-                <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-bottom: 40px;">Volver</button>    
+                <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">Volver</button>    
                 <button class="zindex" mat-raised-button color="primary" *ngIf="botonVisible"(click)="ocultarMostrarBotones()"style="margin-left: 20px;float: right;margin-bottom: 40px;">Editar</button>
                 <button class="zindex" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;"  *ngIf="!botonVisible">Aceptar</button>
             </form>
@@ -174,16 +174,24 @@
                     </div>
                     
                 </form>
-
+              
                 
         
             </div>
+            
         </div>
         <br>
         
     </div>
 </mat-tab>
   </mat-tab-group>
+  <div class="confirmation-dialog" *ngIf="modalSaldo">
+    <div class="dialog-content">
+        <h4>Por favor ingrese un monto válido</h4>
+        <div style="text-align: center;">
+            <button mat-raised-button color="primary"(click)="cancel()">Aceptar</button>
+        </div>
+    </div>   
   <app-footer></app-footer>
 
     

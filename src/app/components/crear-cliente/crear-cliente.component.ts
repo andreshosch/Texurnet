@@ -35,6 +35,7 @@ export class CrearClienteComponent {
   ocultarMatTab=true
   prueba=window.location;
   selectOption:string;
+  modalSaldo=false
   
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
@@ -106,7 +107,7 @@ export class CrearClienteComponent {
    
     if (this.id!==null){
       this.hayCliente= true
-      
+      if(this.calcularSaldo(client.costo, client.productoActual)>=0){
       this._clienteService.updateClient(this.id,client).then(data=>{
         this._snackBar.open('El cliente fue actualizado con exito', '', {
           duration: 1500,
@@ -120,7 +121,10 @@ export class CrearClienteComponent {
         console.log(error)
         
       })
-        
+    }
+    else{
+      this.modalSaldo=true
+    }  
     }
   }
 }
@@ -172,19 +176,19 @@ calcularSaldo(costo, pagos): number{
     if(this.formPago.get('tipoMoneda')?.value == 'Dolar'){
       elMonto = this.formPago.get('montoDolar')?.value
       laCotizacion = '-';
-      equivalencia=(elMonto) 
+      equivalencia=elMonto 
     }
     else {
       elMonto = this.formPago.get('montoPesos')?.value
       laCotizacion = this.formPago.get('cotizacionActual')?.value
-      equivalencia=elMonto/laCotizacion
+      equivalencia=Math.round(elMonto/laCotizacion)
     }
 
     const miPago: Pago = {
       moneda: this.formPago.get('tipoMoneda')?.value,
       monto: elMonto,
       cotizacion: laCotizacion,
-      equivalencia: equivalencia,
+      equivalencia:equivalencia,
       fecha: new Date,
       observacion: this.formPago.get('observacion')?.value,
     }
@@ -224,6 +228,14 @@ calcularSaldo(costo, pagos): number{
     else{
       this.ocultarMatTab=true
     }
+  }
+
+  cancel() {
+    // Lógica para cancelar la acción
+    this.modalSaldo = false;
+    setTimeout(() => {
+      this.router.navigate(['/clientes']);
+    }, 100);
   }
 
   // actualizarConversion(valorSeleccionado) {

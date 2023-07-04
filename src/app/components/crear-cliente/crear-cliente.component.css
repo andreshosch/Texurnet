@@ -5,6 +5,7 @@
 .container {
     margin-top: 5px;
     height: 100vh; 
+    
 }
 
 img {
@@ -35,7 +36,7 @@ img {
 
 
 .ladoIzquierdo{
-    width: 80%;
+    width: 80%;    
 }
 
 .ladoDerecho{
@@ -105,3 +106,27 @@ img {
 .container{
     margin-top: 5%;
 }
+
+.shadowForm{
+-webkit-box-shadow: 1px 1px 1px 0px #3F51B5, inset 1px 1px 11px 0px #3F51B5, 1px 1px 11px 1px rgba(63,81,181,0); 
+box-shadow: 1px 1px 1px 0px #3F51B5, inset 1px 1px 11px 0px #3F51B5, 1px 1px 11px 1px rgba(63,81,181,0);
+}
+.confirmation-dialog {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dialog-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
