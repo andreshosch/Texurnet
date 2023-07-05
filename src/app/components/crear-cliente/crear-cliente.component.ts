@@ -21,6 +21,7 @@ export class CrearClienteComponent {
 
   hayCliente: boolean = false;
   conversion: boolean = true;
+  montoIncorrecto: boolean = false;
 
   form:FormGroup
   loading=false
@@ -257,39 +258,53 @@ calcularSaldo(costo, pagos): number{
   }
 
   agregarPago(){
-    let elMonto 
-    let laCotizacion 
-    let equivalencia
-    
-    if(this.formPago.get('tipoMoneda')?.value == 'Dolar'){
-      elMonto = this.formPago.get('montoDolar')?.value
-      laCotizacion = '-';
-      equivalencia=elMonto 
-    }
-    else {
-      elMonto = this.formPago.get('montoPesos')?.value
-      laCotizacion = this.formPago.get('cotizacionActual')?.value
-      equivalencia=Math.round(elMonto/laCotizacion)
-    }
-
-    const miPago: Pago = {
-      moneda: this.formPago.get('tipoMoneda')?.value,
-      monto: elMonto,
-      cotizacion: laCotizacion,
-      equivalencia:equivalencia,
-      fecha: new Date,
-      observacion: this.formPago.get('observacion')?.value,
-    }
-    this.listPagos.push(miPago)  
-    // this.dataSource = new MatTableDataSource(this.listPagos)  
    
-    ////////////
-    this.createPago()
-    ////////////
 
-    this.formPago.reset()
-    this.cargaPago = false
+    let valorDolar = this.formPago.get('montoDolar')?.value
+    let valorPesos = this.formPago.get('montoPesos')?.value
+    let valorCotizacion = this.formPago.get('cotizacionActual')?.value
+    let valorTipoMoneda = this.formPago.get('tipoMoneda')?.value
+
+    if ((valorTipoMoneda == 'Dolar') && (valorDolar == null)){
+      this.montoIncorrecto = true;
+    }else{
+      if((valorTipoMoneda == 'Pesos') && (valorPesos == null || valorCotizacion == null)){
+        this.montoIncorrecto = true;
+      }else{
+        let elMonto 
+        let laCotizacion 
+        let equivalencia
+        
+        if(valorTipoMoneda == 'Dolar'){
+          elMonto = valorDolar
+          laCotizacion = '-';
+          equivalencia=elMonto 
+        }
+        else {
+          elMonto = valorPesos
+          laCotizacion = valorCotizacion
+          equivalencia=Math.round(elMonto/laCotizacion)
+        }
     
+        const miPago: Pago = {
+          moneda: valorTipoMoneda,
+          monto: elMonto,
+          cotizacion: laCotizacion,
+          equivalencia:equivalencia,
+          fecha: new Date,
+          observacion: this.formPago.get('observacion')?.value,
+        }
+        this.listPagos.push(miPago)  
+        
+        this.createPago()
+    
+        this.formPago.reset()
+        this.cargaPago = false
+        
+      }
+    }
+
+
   }
 
   showModalPago(){
@@ -319,6 +334,7 @@ calcularSaldo(costo, pagos): number{
   aceptar() {
     // Lógica para cancelar la acción
     this.modalSaldo = false;
+    this.montoIncorrecto = false;
   }
 
   // actualizarConversion(valorSeleccionado) {

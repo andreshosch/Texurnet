@@ -199,4 +199,12 @@
         </div>
     </div>
 </div>
+<div class="confirmation-dialog" *ngIf="montoIncorrecto">
+    <div class="dialog-content">
+        <h5>No se completaron los campos obligatorios</h5>
+        <div style="text-align: center;">
+            <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+        </div>
+    </div>
+</div>
   <app-footer></app-footer>
