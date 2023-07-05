@@ -156,7 +156,7 @@ export class CrearClienteComponent {
         if (this.id !== null) {
           this.hayCliente = true
           this.hideSaldo = true
-          if (this.calcularSaldo(client.costo, client.productoActual) >= 0) {
+          if (this.calcularSaldo(client.costo, client.productoActual) >=0) {
             this._clienteService.updateClient(this.id, client).then(data => {
               this.listClientes = data
               
@@ -207,10 +207,7 @@ export class CrearClienteComponent {
         if (this.id !== null) {
           this.hayCliente = true
           this.hideSaldo = true
-          if (this.calcularSaldo(client.costo, client.productoActual) >= 0) {
             this._clienteService.updateClient(this.id, client).then(data => {
-              this.listClientes = data
-              
                 this._snackBar.open('El pago fue eliminado exitosamente!', '', {
                   duration: 1500,
                   horizontalPosition: 'center',
@@ -224,7 +221,6 @@ export class CrearClienteComponent {
             this.modalSaldo = true
           }
         }
-      }
     }
   }
 
@@ -285,7 +281,7 @@ calcularSaldo(costo, pagos): number{
       observacion: this.formPago.get('observacion')?.value,
     }
     this.listPagos.push(miPago)  
-    this.dataSource = new MatTableDataSource(this.listPagos)  
+    // this.dataSource = new MatTableDataSource(this.listPagos)  
    
     ////////////
     this.createPago()
@@ -320,12 +316,9 @@ calcularSaldo(costo, pagos): number{
     }
   }
 
-  cancel() {
+  aceptar() {
     // Lógica para cancelar la acción
     this.modalSaldo = false;
-    setTimeout(() => {
-      this.router.navigate(['/clientes']);
-    }, 100);
   }
 
   // actualizarConversion(valorSeleccionado) {

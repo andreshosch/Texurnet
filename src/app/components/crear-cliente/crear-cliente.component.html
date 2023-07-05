@@ -163,17 +163,17 @@
         
                     <mat-form-field class="ancho" *ngIf="selectOption!=='Pesos'">
                         <mat-label>Monto Dolares</mat-label>
-                        <input matInput autocomplete="off" formControlName="montoDolar">
+                        <input type="number" [class.hide-number-arrows]="true" matInput autocomplete="off" formControlName="montoDolar">
                     </mat-form-field>
         
                     <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
                         <mat-label>Monto Pesos</mat-label>
-                        <input matInput autocomplete="off" formControlName="montoPesos">
+                        <input type="number" [class.hide-number-arrows]="true" matInput autocomplete="off" formControlName="montoPesos">
                     </mat-form-field>
 
                     <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
                         <mat-label>Cotizacion actual</mat-label>
-                        <input matInput autocomplete="off" formControlName="cotizacionActual">
+                        <input type="number" [class.hide-number-arrows]="true"  matInput autocomplete="off" formControlName="cotizacionActual">
                     </mat-form-field>
         
                     <mat-form-field class="ancho">
@@ -191,11 +191,12 @@
     </div>
 </mat-tab>
   </mat-tab-group>
-  <div class="confirmation-dialog" *ngIf="modalSaldo">
+<div class="confirmation-dialog" *ngIf="modalSaldo">
     <div class="dialog-content">
         <h5>El monto ingresado es mayor al saldo del cliente</h5>
         <div style="text-align: center;">
-            <button mat-raised-button color="primary"(click)="cancel()">Aceptar</button>
+            <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
         </div>
-    </div>    
+    </div>
+</div>
   <app-footer></app-footer>
