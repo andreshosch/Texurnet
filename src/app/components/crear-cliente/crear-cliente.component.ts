@@ -36,7 +36,7 @@ export class CrearClienteComponent {
   selectOption:string;
   modalSaldo=false
   hideSaldo=false
-  saldoBloq=true  
+  saldoBloq=false
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
     this.minimo = new Date(); 
@@ -75,7 +75,7 @@ export class CrearClienteComponent {
   agregarCliente() {
     this.showConfirmationDialog= false
     this.hideSaldo=false
-    const client: Cliente = {
+      const client: Cliente = {
       nombre: this.form.get('nombre')?.value,
       apellido: this.form.get('apellido')?.value,
       ciudad: this.form.get('ciudad')?.value,
@@ -88,7 +88,8 @@ export class CrearClienteComponent {
       costo:this.form.get('costo')?.value,
       productoActual: this.listPagos
     }
-    if(this.prueba.href=="http://localhost:4200/crearCliente"){
+    if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+    // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.createClient(client).then(() => {
         this._snackBar.open('El cliente fue agregado con exito', '', {
           duration: 1500,
@@ -144,7 +145,8 @@ export class CrearClienteComponent {
         costo: this.form.get('costo')?.value,
         productoActual: this.listPagos
       }
-      if (this.prueba.href == "http://localhost:4200/crearCliente") {
+      if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+      // if (this.prueba.href == "http://localhost:4200/crearCliente") {
         this._clienteService.createClient(client).then(() => {
 
         }, error => {
@@ -158,6 +160,7 @@ export class CrearClienteComponent {
           this.hayCliente = true
           this.hideSaldo = true
           if (this.calcularSaldo(client.costo, client.productoActual) >=0) {
+            client.saldo=this.calcularSaldo(client.costo, client.productoActual)
             this._clienteService.updateClient(this.id, client).then(data => {
               this.listClientes = data
               
@@ -195,7 +198,8 @@ export class CrearClienteComponent {
         costo: this.form.get('costo')?.value,
         productoActual: this.listPagos
       }
-      if (this.prueba.href == "http://localhost:4200/crearCliente") {
+      if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+      // if (this.prueba.href == "http://localhost:4200/crearCliente") {
         this._clienteService.createClient(client).then(() => {
 
         }, error => {
@@ -208,8 +212,12 @@ export class CrearClienteComponent {
         if (this.id !== null) {
           this.hayCliente = true
           this.hideSaldo = true
+          if (this.calcularSaldo(client.costo, client.productoActual) >=0) {
+            client.saldo=this.calcularSaldo(client.costo, client.productoActual)
             this._clienteService.updateClient(this.id, client).then(data => {
-                this._snackBar.open('El pago fue eliminado exitosamente!', '', {
+              this.listClientes = data
+              
+                this._snackBar.open('El pago fue agregado exitosamente!', '', {
                   duration: 1500,
                   horizontalPosition: 'center',
                 })
@@ -222,6 +230,7 @@ export class CrearClienteComponent {
             this.modalSaldo = true
           }
         }
+      }
     }
   }
 
@@ -237,6 +246,7 @@ calcularSaldo(costo, pagos): number{
     if (this.id !== null) {
       this.hayCliente = true
       this.hideSaldo=true
+      this.saldoBloq=true
       this.titulo = 'Datos Cliente'
       this._clienteService.getClientsById(this.id).subscribe(data => {
         this.form.setValue({
@@ -265,10 +275,10 @@ calcularSaldo(costo, pagos): number{
     let valorCotizacion = this.formPago.get('cotizacionActual')?.value
     let valorTipoMoneda = this.formPago.get('tipoMoneda')?.value
 
-    if ((valorTipoMoneda == 'Dolar') && (valorDolar == null)){
+    if ((valorTipoMoneda == 'Dolar') && (valorDolar == null||valorDolar ===0)){
       this.montoIncorrecto = true;
     }else{
-      if((valorTipoMoneda == 'Pesos') && (valorPesos == null || valorCotizacion == null)){
+      if((valorTipoMoneda == 'Pesos') && (valorPesos == null || valorCotizacion == null ||valorPesos ===0 || valorCotizacion === 0)){
         this.montoIncorrecto = true;
       }else{
         let elMonto 
@@ -313,6 +323,7 @@ calcularSaldo(costo, pagos): number{
 
   closeModalPago(){
     this.cargaPago= false;
+    this.formPago.reset()
   }
 
   formatoFecha(date: Date): string {
@@ -323,7 +334,8 @@ calcularSaldo(costo, pagos): number{
   }
 
   mostrartab(){
-    if(this.prueba.href=="http://localhost:4200/crearCliente"){
+    if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+    // if(this.prueba.href=="http://localhost:4200/crearCliente"){
     this.ocultarMatTab=false
     }
     else{

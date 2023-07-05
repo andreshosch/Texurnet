@@ -10,14 +10,16 @@ import { ClienteService } from 'src/app/services/cliente.service';
 @Component({
   selector: 'app-listar-clientes',
   templateUrl: './listar-clientes.component.html',
-  styleUrls: ['./listar-clientes.component.css']
+  styleUrls: ['./listar-clientes.component.css'],
 })
 export class ClienteComponent {
   listClientes: Cliente[] = []
   fecha=new Date().getTime();
   idDelete: string;
+  condicionDeudor=true
+ 
 
-  displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','acciones'];
+  displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','deudaLicencia','acciones'];
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;
@@ -132,11 +134,11 @@ confirm(){
           return '#FF4D4D'
         }
         else if(dia < 0){
-          return '#FFE14D'
-        } else if(dia < 16){
           return '#FF884D'
+        } else if(dia < 16){
+          return '#FFDD33'
         }else if(dia < 31){
-          return '#FFA64D'
+          return '#FFFF66'
         } else {
           // this.hayLicenciasAlLimite = false;
           return 'white'
@@ -151,6 +153,10 @@ confirm(){
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear().toString();
         return `${day}/${month}/${year}`;
+      }
+
+      deudor(){
+        return this.condicionDeudor? 'red':'green'
       }
 }
 

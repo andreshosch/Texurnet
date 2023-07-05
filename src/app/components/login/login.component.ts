@@ -25,9 +25,9 @@ export class LoginComponent {
 
     const usuario = this.form.value.usuario;
     const password = this.form.value.password;
-    if (usuario == "admin" && password == "pass123") {
+    if ((usuario == "txtadmin01" && password == "txt01admin")||(usuario == "txtadmin02" && password == "txt02admin")||(usuario == "txtadmin03" && password == "txt03admin")) {
       this.fakeLoggin();
-    } else if (usuario == "invitado" && password == "invitado") {
+    } else if (usuario == "txtinvitado" && password == "invitadotxt") {
       this.loginInvitado();
     }
     else {
