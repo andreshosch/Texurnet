@@ -88,7 +88,7 @@ export class CrearClienteComponent {
       costo:this.form.get('costo')?.value,
       productoActual: this.listPagos
     }
-    if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+    if(this.prueba.href="https://sistema-texurnet.web.app/crearCliente"){
     // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.createClient(client).then(() => {
         this._snackBar.open('El cliente fue agregado con exito', '', {
@@ -145,7 +145,7 @@ export class CrearClienteComponent {
         costo: this.form.get('costo')?.value,
         productoActual: this.listPagos
       }
-      if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+      if(this.prueba.href="https://sistema-texurnet.web.app/crearCliente"){
       // if (this.prueba.href == "http://localhost:4200/crearCliente") {
         this._clienteService.createClient(client).then(() => {
 
@@ -198,8 +198,8 @@ export class CrearClienteComponent {
         costo: this.form.get('costo')?.value,
         productoActual: this.listPagos
       }
-      if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
-      // if (this.prueba.href == "http://localhost:4200/crearCliente") {
+      if(this.prueba.href="https://sistema-texurnet.web.app/crearCliente"){
+      // if (this.prueba.href == "http://localhost:4200/crearCliente"){ 
         this._clienteService.createClient(client).then(() => {
 
         }, error => {
@@ -334,7 +334,7 @@ calcularSaldo(costo, pagos): number{
   }
 
   mostrartab(){
-    if(this.prueba.href="https://sistema-texurnet.web.app/clientes"){
+    if(this.prueba.href=="https://sistema-texurnet.web.app/crearCliente"){
     // if(this.prueba.href=="http://localhost:4200/crearCliente"){
     this.ocultarMatTab=false
     }
