@@ -16,7 +16,7 @@ export class InvitadoComponent {
   fecha=new Date().getTime();
   idDelete: string;
 
-  displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia'];
+  displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','deudaLicencia'];
   dataSource!: MatTableDataSource<Cliente>;
 
   hayLicenciasAlLimite: boolean= false;

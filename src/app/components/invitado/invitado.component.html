@@ -38,6 +38,14 @@
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element"> {{formatoFecha(element.fechaLicencia.toDate())}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="deudaLicencia" >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">Pago Completo</th>
+                    <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element" class="circlegreen">
+                        <mat-icon [ngStyle]="{'color': element.saldo>0?'#B30000':'#008015'}">lens</mat-icon>              
+                         </td>
+                    
+                </ng-container>
+
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
