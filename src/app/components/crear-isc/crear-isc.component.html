@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<mat-toolbar>
+    <span>{{titulo}}</span>
+</mat-toolbar>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="0ms" style="margin-top: 2%;">
+    <mat-tab label="Datos Isc"><div class="ladoIzquierdo container">
+        <mat-card style="margin-top: 30px;">
+            <form [formGroup]="formIsc" (ngSubmit)="agregarIsc()" class="shadowForm">
+                <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 8%; margin-right: 6%;">
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Modelo</mat-label>
+                            <input matInput autocomplete="off" formControlName="modelo">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Version</mat-label>
+                            <input matInput autocomplete="off" formControlName="version">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Software</mat-label>
+                            <input matInput autocomplete="off" formControlName="software">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Garantía</mat-label>
+                            <input matInput autocomplete="off" formControlName="garantia">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Fecha Activación</mat-label>
+                            <input matInput [matDatepicker]="picker1" [min]="minimo"
+                            formControlName="fechaActivacion">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1">
+                            <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Stock</mat-label>
+                            <select matNativeControl formControlName="stock">
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                            </select>
+                          </mat-form-field>
+                          
+                    </mat-grid-tile>
+                    
+                   
+                </mat-grid-list>    
+               
+                <button   mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/isc" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">Volver</button>    
+                <button  type="submit" [disabled]="formIsc.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;">Aceptar</button>
+            </form>
+        </mat-card>
+       
+       
+    
+    </div></mat-tab>

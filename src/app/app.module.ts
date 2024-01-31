@@ -18,6 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import localeArEG from '@angular/common/locales/ar-EG';
 import { registerLocaleData } from '@angular/common';
 import { InvitadoComponent } from './components/invitado/invitado.component';
+import { ListarIscComponent } from './components/listar-isc/listar-isc.component';
+import { CrearIscComponent } from './components/crear-isc/crear-isc.component';
 
 
 registerLocaleData(localeArEG);
@@ -32,7 +34,9 @@ registerLocaleData(localeArEG);
     CrearClienteComponent,
     HomeComponent,
     FooterComponent,
-    InvitadoComponent
+    InvitadoComponent,
+    ListarIscComponent,
+    CrearIscComponent
     
   ],
   imports: [
