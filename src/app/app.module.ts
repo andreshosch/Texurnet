@@ -18,8 +18,16 @@ import { FooterComponent } from './components/footer/footer.component';
 import localeArEG from '@angular/common/locales/ar-EG';
 import { registerLocaleData } from '@angular/common';
 import { InvitadoComponent } from './components/invitado/invitado.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { HttpClient } from '@angular/common/http';
+import { LanguajeMenuComponent } from './components/languaje-menu/languaje-menu.component'; 
 
 
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 registerLocaleData(localeArEG);
 
 
@@ -32,7 +40,9 @@ registerLocaleData(localeArEG);
     CrearClienteComponent,
     HomeComponent,
     FooterComponent,
-    InvitadoComponent
+    InvitadoComponent,
+    LanguajeMenuComponent
+    
     
   ],
   imports: [
@@ -45,7 +55,14 @@ registerLocaleData(localeArEG);
     AngularFireAuthModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
    
   ],
   exports: [

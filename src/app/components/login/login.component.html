@@ -1,9 +1,16 @@
 <div class="body">
     <div>
         <h1 class="titulo">
+            <h1>{{ 'WELCOME_MESSAGE' | translate }}</h1>
             Sistema Gestión de Clientesss
+            <h4>
+                <app-languaje-menu></app-languaje-menu>
+            </h4>
+            
         </h1>
+        
     </div>
+    
     <div class="componente portada" *ngIf="!loading">
         <img src="../../../assets/img/logo texurnet.jpeg" style="margin-top: 7%; margin-bottom: 3%;">
     </div>
