@@ -1,0 +1,9 @@
+.setIdioma{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.setIdioma img{
+    margin-right:  5px;
+}

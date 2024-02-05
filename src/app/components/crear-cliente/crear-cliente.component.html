@@ -3,49 +3,49 @@
     <span>{{titulo}}</span>
 </mat-toolbar>
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="0ms" style="margin-top: 2%;">
-    <mat-tab label="Datos"><div class="ladoIzquierdo container">
+    <mat-tab label="{{ 'DATAS_MESSAGE' | translate }}"><div class="ladoIzquierdo container">
         <mat-card style="margin-top: 30px;">
             <form [formGroup]="form" (ngSubmit)="agregarCliente()" class="shadowForm">
                 <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 8%; margin-right: 6%;">
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Nombre</mat-label>
+                            <mat-label>{{ 'NAME_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="nombre">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Apellido</mat-label>
+                            <mat-label>{{ 'LNAME_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="apellido">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Ciudad</mat-label>
+                            <mat-label>{{ 'CITY_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="ciudad">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Tipo Licencia</mat-label>
+                            <mat-label>{{ 'TYPE_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="tipoLicencia">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Nro Serie</mat-label>
+                            <mat-label>{{ 'NRO_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="nroSerie">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Contraseña</mat-label>
+                            <mat-label>{{ 'PASS_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="password">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Fecha Expiración Licencia</mat-label>
+                            <mat-label>{{ 'DATEEXP_MESSAGE' | translate }}</mat-label>
                             <input matInput [matDatepicker]="picker1" [min]="minimo"
                             formControlName="fechaLicencia">
                         <mat-datepicker-toggle matIconSuffix [for]="picker1">
@@ -57,21 +57,21 @@
 
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Observaciones</mat-label>
+                            <mat-label>{{ 'OBS_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="observaciones">
                         </mat-form-field>
                     </mat-grid-tile>
 
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Costo</mat-label>
+                            <mat-label>{{ 'PRICE_MESSAGE' | translate }}</mat-label>
                             <input type="number" [class.hide-number-arrows]="true" [readonly]="saldoBloq" matInput autocomplete="off" formControlName="costo">
                         </mat-form-field>
                     </mat-grid-tile>
 
                     <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="hideSaldo">
                         <mat-form-field class="ancho">
-                            <mat-label>Saldo</mat-label>
+                            <mat-label>{{ 'SALDO_MESSAGE' | translate }}</mat-label>
                             <input [readonly]="saldoBloq" matInput autocomplete="off" formControlName="saldo">
                         </mat-form-field>
                     </mat-grid-tile>
@@ -83,15 +83,15 @@
                    
                 </mat-grid-list>    
                
-                <button   mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">Volver</button>    
-                <button  type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;">Aceptar</button>
+                <button   mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/clientes" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">{{ 'BACK_MESSAGE' | translate }}</button>    
+                <button  type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;">{{ 'ACCEPT_MESSAGE' | translate }}</button>
             </form>
         </mat-card>
        
        
     
     </div></mat-tab>
-    <mat-tab label="Pagos" *ngIf="ocultarMatTab"> <div class="ladoDerecho container" *ngIf="hayCliente" >
+    <mat-tab label="{{ 'PAYS_MESSAGE' | translate }}" *ngIf="ocultarMatTab"> <div class="ladoDerecho container" *ngIf="hayCliente" >
        
         <mat-card style="margin-top: 30px;">
             <!-- <h4 style="text-align: center;">Pagos realizados</h4> -->
@@ -99,37 +99,37 @@
             <table mat-table [dataSource]="dataSource" matSort>
                 <div *ngIf="listPagos.length>0"></div>
                 <ng-container matColumnDef="TipoMoneda">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;"> Tipo Moneda </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">{{ 'TYPEM_MESSAGE' | translate }} </th>
                     <td mat-cell *matCellDef="let element">{{element.moneda}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Monto">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;"> Monto </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">{{ 'MOUNT_MESSAGE' | translate }} </th>
                     <td mat-cell *matCellDef="let element"> {{ element.moneda=='Pesos' ? '$ '+element.monto : 'U$S '+element.monto}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Cotizacion">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Cotizacion</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">{{ 'COT_MESSAGE' | translate }}</th>
                     <td mat-cell *matCellDef="let element"> {{ element.moneda=='Pesos' ? '$ '+element.cotizacion : '-'}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Equivalencia">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Monto</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">{{ 'MOUNT_MESSAGE' | translate }}</th>
                     <td mat-cell *matCellDef="let element"> U$S {{element.equivalencia}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Fecha">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Fecha</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">{{ 'DAT_MESSAGE' | translate }}</th>
                     <td mat-cell *matCellDef="let element"> {{formatoFecha(element.fecha.toDate())}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="Observaciones">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Observaciones</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">{{ 'OBS_MESSAGE' | translate }}</th>
                     <td mat-cell *matCellDef="let element"> {{element.observacion}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="Acciones">
-                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">Acciones</th>
+                    <th mat-header-cell *matHeaderCellDef style="background-color:#3f51b5;color: white;">{{ 'ACTION_MESSAGE' | translate }}</th>
                     <td mat-cell *matCellDef="let element">
                          <a class="pointer" (click)="eliminarPagos(element)" style="color: rgb(75, 75, 75);"
                             matTooltip="Eliminar Pago">
@@ -144,45 +144,45 @@
             </table>
         </mat-card>
     
-    <h2 *ngIf="listPagos.length==0" >El cliente no posee pagos</h2>
-        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;float: right;margin-top: 20px;" routerLink="/clientes">Volver</button>
-        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;float: right; margin-top: 20px;" (click)="showModalPago()">Agregar Pago</button>
+    <h2 *ngIf="listPagos.length==0" >{{ 'MSG3_MESSAGE' | translate }}</h2>
+        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;float: right;margin-top: 20px;" routerLink="/clientes">{{ 'BACK_MESSAGE' | translate }}</button>
+        <button class="zindex" mat-raised-button color="primary" style="margin-left: 20px;float: right; margin-top: 20px;" (click)="showModalPago()">{{ 'ADDPAY_MESSAGE' | translate }}</button>
         <br>
 
         <div *ngIf="cargaPago" class="confirmation-dialog">
             <div class="modalAddPago">
-                <h4>Agregar Pago</h4>
+                <h4>{{ 'ADDPAY_MESSAGE' | translate }}</h4>
                 <form [formGroup]="formPago" (ngSubmit)="agregarPago()">
                     <mat-form-field class="ancho">
-                        <mat-label>Tipo de Moneda</mat-label>
+                        <mat-label>{{ 'TYPEM_MESSAGE' | translate }}</mat-label>
                         <select [(ngModel)]="selectOption" matNativeControl autocomplete="off" formControlName="tipoMoneda">
-                            <option value="Dolar">Dolar</option>
-                            <option value="Pesos">Pesos</option>
+                            <option value="Dolar">{{ 'TYPED_MESSAGE' | translate }}</option>
+                            <option value="Pesos">{{ 'TYPEP_MESSAGE' | translate }}</option>
                         </select>
                     </mat-form-field>
         
                     <mat-form-field class="ancho" *ngIf="selectOption!=='Pesos'">
-                        <mat-label>Monto Dolares</mat-label>
+                        <mat-label>{{ 'MOUNTD_MESSAGE' | translate }}</mat-label>
                         <input type="number" [class.hide-number-arrows]="true" matInput autocomplete="off" formControlName="montoDolar">
                     </mat-form-field>
         
                     <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
-                        <mat-label>Monto Pesos</mat-label>
+                        <mat-label>{{ 'MOUNTP_MESSAGE' | translate }}</mat-label>
                         <input type="number" [class.hide-number-arrows]="true" matInput autocomplete="off" formControlName="montoPesos">
                     </mat-form-field>
 
                     <mat-form-field class="ancho"*ngIf="selectOption!=='Dolar'">
-                        <mat-label>Cotizacion actual</mat-label>
+                        <mat-label>{{ 'COTACT_MESSAGE' | translate }}</mat-label>
                         <input type="number" [class.hide-number-arrows]="true"  matInput autocomplete="off" formControlName="cotizacionActual">
                     </mat-form-field>
         
                     <mat-form-field class="ancho">
-                        <mat-label>Observación</mat-label>
+                        <mat-label>{{ 'OBS_MESSAGE' | translate }}</mat-label>
                         <input matInput autocomplete="off" formControlName="observacion">
                     </mat-form-field>
                     <div class="botonesModal">
-                        <button type="submit"mat-raised-button color="primary" style="margin-left: 20px" >Aceptar</button>
-                        <button (click)="closeModalPago()" mat-raised-button color="primary" style="margin-left: 20px" >Cancelar</button>
+                        <button type="submit"mat-raised-button color="primary" style="margin-left: 20px" >{{ 'ACCEPT_MESSAGE' | translate }}</button>
+                        <button (click)="closeModalPago()" mat-raised-button color="primary" style="margin-left: 20px" >{{ 'CANCEL_MESSAGE' | translate }}</button>
                     </div>
                 </form>
             </div>
@@ -193,17 +193,17 @@
   </mat-tab-group>
 <div class="confirmation-dialog" *ngIf="modalSaldo">
     <div class="dialog-content">
-        <h5>El monto ingresado es mayor al saldo del cliente</h5>
+        <h5>{{ 'MSG4_MESSAGE' | translate }}</h5>
         <div style="text-align: center;">
-            <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+            <button mat-raised-button color="primary" (click)="aceptar()">{{ 'ACCEPT_MESSAGE' | translate }}</button>
         </div>
     </div>
 </div>
 <div class="confirmation-dialog" *ngIf="montoIncorrecto">
     <div class="dialog-content">
-        <h5>No se completaron los campos obligatorios</h5>
+        <h5>{{ 'MSG5_MESSAGE' | translate }}</h5>
         <div style="text-align: center;">
-            <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+            <button mat-raised-button color="primary" (click)="aceptar()">{{ 'ACCEPT_MESSAGE' | translate }}</button>
         </div>
     </div>
 </div>
