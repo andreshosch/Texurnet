@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Isc } from 'src/app/models/isc';
 import { IscService } from 'src/app/services/isc.service';
+import { TranslateService } from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-listar-isc',
@@ -29,11 +30,11 @@ export class ListarIscComponent {
   }
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
-    this.paginator._intl.itemsPerPageLabel = 'Isc por Página'
-    this.paginator._intl.firstPageLabel = "Primera Página"
-    this.paginator._intl.previousPageLabel = "Página Anterior"
-    this.paginator._intl.nextPageLabel = 'Siguiente Página'
-    this.paginator._intl.lastPageLabel = "Última Página"
+    this.paginator._intl.itemsPerPageLabel = this._translateService.instant('ISC_P_P')
+    this.paginator._intl.firstPageLabel = this._translateService.instant('FIRST_PAGE')
+    this.paginator._intl.previousPageLabel = this._translateService.instant('PAGE_AFT')
+    this.paginator._intl.nextPageLabel = this._translateService.instant('PAGE_NEXT')
+    this.paginator._intl.lastPageLabel = this._translateService.instant('PAGE_LAST')
     this.setDataSourceAttributes();
   }
 
@@ -42,7 +43,7 @@ export class ListarIscComponent {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private _iscService: IscService,private _snackBar: MatSnackBar) {
+  constructor(private _iscService: IscService,private _snackBar: MatSnackBar, private _translateService: TranslateService) {
     this.dataSource = new MatTableDataSource(this.listIsc);
   }
   ngOnInit() {
@@ -94,7 +95,7 @@ eliminarIsc(element:any){
   }
 confirm(){
   this._iscService.deleteIsc(this.idDelete).then(()=>{
-    this._snackBar.open('El Isc ha sido eliminado correctamente', '', {
+    this._snackBar.open(this._translateService.instant('ISC_ELIMINADO_CORRECTAMENTE'), '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
@@ -102,9 +103,7 @@ confirm(){
         }, error => {
           console.log(error)
         });
-        //  if (this.listClientes=[]){
-        //   this.hayLicenciasAlLimite= false;
-        //  } 
+       
         this.showConfirmationDialog=false
         this.paginator.length=this.paginator.length-1
         

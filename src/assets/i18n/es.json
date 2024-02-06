@@ -58,5 +58,21 @@
     "EDIT_MESSAGE": "Datos del cliente",
     "ADDC_MESSAGE": "Crear cliente",
     "EDITISC_MESSAGE": "Datos Isc",
-    "ADDISC_MESSAGE": "Crear Isc"
+    "ADDISC_MESSAGE": "Crear Isc",
+    "ISC_ELIMINADO_CORRECTAMENTE": "El ISC ha sido eliminado correctamente",
+    "ISC_P_P": "ISC por página",
+    "FIRST_PAGE": "Primera página",
+    "PAGE_AFT": "Página anterior",
+    "PAGE_NEXT": "Página siguiente",
+    "PAGE_LAST": "Ultima página",
+    "ISC_UPDATE": "El ISC fue actualizado con exito",
+    "ISC_ADD":"El ISC fue agregado con exito",
+    "CLIENT_ADD": "El cliente fue agregado con exito",
+    "CLIENT_UPDATE":"El cliente fue actualizado con exito",
+    "PAY_SUCCES":"El pago fue agregado exitosamente",
+    "CLIENT_P_P":"Clientes por página",
+    "CLIENT_DEL": "El cliente ha sido eliminado correctamente",
+    "ESPANOL_MESSAGE":"Español",
+    "ITALIANO_MESSAGE":"Italiano",
+    "PORTUGUES_MESSAGE":"Portugués"
   }

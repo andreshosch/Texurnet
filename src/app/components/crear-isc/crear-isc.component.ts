@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Isc } from 'src/app/models/isc';
 import { IscService } from 'src/app/services/isc.service';
+import { TranslateService } from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-crear-isc',
@@ -20,7 +21,7 @@ export class CrearIscComponent {
   altaIsc: boolean = false
 
 
-  constructor(private fb: FormBuilder, private _iscService: IscService, private router: Router, private _snackBar: MatSnackBar, private aRouter: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _iscService: IscService, private router: Router, private _snackBar: MatSnackBar, private aRouter: ActivatedRoute, private _translateService: TranslateService) {
     this.formIsc = this.fb.group({
       modelo: ['', Validators.required],
       version: ['', Validators.required],
@@ -52,7 +53,7 @@ export class CrearIscComponent {
     if (this.prueba.href == "http://localhost:4200/crearIsc") {
       // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._iscService.createIsc(isc).then(() => {
-        this._snackBar.open('El Isc fue agregado con exito', '', {
+          this._snackBar.open(this._translateService.instant('ISC_ADD'), '', {
           duration: 1500,
           horizontalPosition: 'center',
         })
@@ -71,7 +72,8 @@ export class CrearIscComponent {
       if (this.id !== null) {
 
         this._iscService.updateIsc(this.id, isc).then(data => {
-          this._snackBar.open('El Isc fue actualizado con exito', '', {
+          
+          this._snackBar.open(this._translateService.instant('ISC_UPDATE'), '', {
             duration: 1500,
             horizontalPosition: 'center',
           })

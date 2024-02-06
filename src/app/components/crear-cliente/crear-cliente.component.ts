@@ -6,6 +6,7 @@ import { Cliente} from 'src/app/models/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Pago } from 'src/app/models/pago';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-crear-cliente',
@@ -39,7 +40,7 @@ export class CrearClienteComponent {
   hideSaldo=false
   saldoBloq=false
 
-  constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute){
+  constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute, private _translateService: TranslateService){
     this.minimo = new Date(); 
     this.maximo = new Date();
     this.minimo.setFullYear(this.minimo.getFullYear() -100);
@@ -92,7 +93,7 @@ export class CrearClienteComponent {
     if(this.prueba.href=="https://sistema-texurnet.web.app/crearCliente"){
     // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._clienteService.createClient(client).then(() => {
-        this._snackBar.open('El cliente fue agregado con exito', '', {
+          this._snackBar.open(this._translateService.instant('CLIENT_ADD'), '', {
           duration: 1500,
           horizontalPosition: 'center',
         })
@@ -113,7 +114,7 @@ export class CrearClienteComponent {
       this.hideSaldo=true
       if(this.calcularSaldo(client.costo, client.productoActual)>=0){
       this._clienteService.updateClient(this.id,client).then(data=>{
-        this._snackBar.open('El cliente fue actualizado con exito', '', {
+        this._snackBar.open(this._translateService.instant('CLIENT_UPDATE'), '', {
           duration: 1500,
           horizontalPosition: 'center',
         })
@@ -164,8 +165,7 @@ export class CrearClienteComponent {
             client.saldo=this.calcularSaldo(client.costo, client.productoActual)
             this._clienteService.updateClient(this.id, client).then(data => {
               this.listClientes = data
-              
-                this._snackBar.open('El pago fue agregado exitosamente!', '', {
+              this._snackBar.open(this._translateService.instant('PAY_SUCCES'), '', {
                   duration: 1500,
                   horizontalPosition: 'center',
                 })
@@ -218,7 +218,7 @@ export class CrearClienteComponent {
             this._clienteService.updateClient(this.id, client).then(data => {
               this.listClientes = data
               
-                this._snackBar.open('El pago fue agregado exitosamente!', '', {
+                this._snackBar.open(this._translateService.instant('PAY_SUCCES'), '', {
                   duration: 1500,
                   horizontalPosition: 'center',
                 })

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/models/cliente'
 import { ClienteService } from 'src/app/services/cliente.service';
+import { TranslateService } from '@ngx-translate/core'; 
 
 
 @Component({
@@ -38,11 +39,11 @@ export class ClienteComponent {
 
 @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
   this.paginator = mp;
-  this.paginator._intl.itemsPerPageLabel='Clientes por Página'
-  this.paginator._intl.firstPageLabel="Primera Página"
-  this.paginator._intl.previousPageLabel="Página Anterior"
-  this.paginator._intl.nextPageLabel='Siguiente Página'
-  this.paginator._intl.lastPageLabel="Última Página"
+  this.paginator._intl.itemsPerPageLabel= this._translateService.instant('CLIENT_P_P')
+  this.paginator._intl.firstPageLabel= this._translateService.instant('FIRST_PAGE')
+  this.paginator._intl.previousPageLabel= this._translateService.instant('PAGE_AFT')
+  this.paginator._intl.nextPageLabel= this._translateService.instant('PAGE_NEXT')
+  this.paginator._intl.lastPageLabel= this._translateService.instant('PAGE_LAST')
   this.setDataSourceAttributes();
 }
 
@@ -52,8 +53,7 @@ setDataSourceAttributes() {
   }
 
 
-  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar
-    ) {
+  constructor(private _clienteService: ClienteService, private _snackBar: MatSnackBar, private _translateService: TranslateService) {
     this.dataSource = new MatTableDataSource(this.listClientes);
   }
 
@@ -93,7 +93,7 @@ eliminarCliente(id: any){
   }
 confirm(){
   this._clienteService.deleteClient(this.idDelete).then(()=>{
-    this._snackBar.open('El cliente ha sido eliminado correctamente', '', {
+      this._snackBar.open(this._translateService.instant('CLIENT_DEL'), '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
@@ -101,9 +101,6 @@ confirm(){
         }, error => {
           console.log(error)
         });
-        //  if (this.listClientes=[]){
-        //   this.hayLicenciasAlLimite= false;
-        //  } 
         this.showConfirmationDialog=false
         this.hayLicenciasAlLimite= false;
         this.paginator.length=this.paginator.length-1
