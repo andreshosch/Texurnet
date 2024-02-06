@@ -50,16 +50,12 @@
                 <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef class="colorColumna"style="background-color:#3f51b5;color: white;">{{ 'ACTION_MESSAGE' | translate }}</th>
                     <td [ngStyle]="{'background-color': calcularDiferencia(element.fechaLicencia.toDate())}" mat-cell *matCellDef="let element;let i=index">
-                        <!-- <a class="pointer" [routerLink]="['/cliente', element.id]" style="color: grey;"
-                            matTooltip="Ver Usuario">
-                            <mat-icon>search</mat-icon>
-                        </a> -->
                         <a class="pointer" [routerLink]="['/verCliente', element.id]" style="color: grey;"
-                            matTooltip="Ver Usuario">
+                            matTooltip="{{ 'VIEWUSR_MESSAGE' | translate }}">
                             <mat-icon>search</mat-icon>
                         </a>
                         <a class="pointer" (click)="eliminarCliente(element.id)" style="color: rgb(75, 75, 75);"
-                            matTooltip="Eliminar Usuario">
+                            matTooltip="{{ 'DELUSR_MESSAGE' | translate }}">
                             <mat-icon>delete</mat-icon>
                         </a>
                         <div class="confirmation-dialog" *ngIf="showConfirmationDialog">

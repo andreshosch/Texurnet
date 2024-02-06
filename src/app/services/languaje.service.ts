@@ -8,12 +8,12 @@ export class LanguajeService {
 
   private defaultLanguage = 'es';
 
+
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang(this.defaultLanguage);
    }
 
   setLanguage(language: string): void {
-    console.log(`idioma: ${language}`)
     this.translate.use(language);
   }
 

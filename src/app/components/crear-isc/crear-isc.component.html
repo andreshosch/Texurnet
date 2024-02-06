@@ -10,13 +10,13 @@
                 <mat-grid-list cols="4" rowHeight="70px" style="margin-top: 8%; margin-right: 6%;">
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Modelo</mat-label>
+                            <mat-label>{{ 'MODEL_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="modelo">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Version</mat-label>
+                            <mat-label>{{ 'VERSION_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="version">
                         </mat-form-field>
                     </mat-grid-tile>
@@ -28,13 +28,13 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Garantía</mat-label>
+                            <mat-label>{{ 'GTIA_MESSAGE' | translate }}</mat-label>
                             <input matInput autocomplete="off" formControlName="garantia">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Fecha Activación</mat-label>
+                            <mat-label>{{ 'DATEACT_MESSAGE' | translate }}</mat-label>
                             <input matInput [matDatepicker]="picker1" [min]="minimo"
                             formControlName="fechaActivacion">
                         <mat-datepicker-toggle matIconSuffix [for]="picker1">
@@ -47,8 +47,8 @@
                         <mat-form-field class="ancho">
                             <mat-label>Stock</mat-label>
                             <select matNativeControl formControlName="stock">
-                                <option value="SI">SI</option>
-                                <option value="NO">NO</option>
+                                <option value="SI">{{ 'YES_MESSAGE' | translate }}</option>
+                                <option value="NO">{{ 'NO_MESSAGE' | translate }}</option>
                             </select>
                           </mat-form-field>
                           
@@ -57,8 +57,8 @@
                    
                 </mat-grid-list>    
                
-                <button   mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/isc" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">Volver</button>    
-                <button  type="submit" [disabled]="formIsc.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;">Aceptar</button>
+                <button   mat-raised-button color="primary" style="margin-left: 20px;" routerLink="/isc" style="margin-left: 20px;float: right;margin-bottom: 40px; margin-right: 10px;">{{ 'BACK_MESSAGE' | translate }}</button>    
+                <button  type="submit" [disabled]="formIsc.invalid" mat-raised-button color="primary" style="float: right;margin-bottom: 40px;">{{ 'ACCEPT_MESSAGE' | translate }}</button>
             </form>
         </mat-card>
        

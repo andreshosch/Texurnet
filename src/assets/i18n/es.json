@@ -41,5 +41,18 @@
     "MSG4_MESSAGE":"El monto ingresado es mayor al saldo del cliente",
     "MSG5_MESSAGE":"No se completaron los campos obligatorios",
     "DATAS_MESSAGE":"Datos",
-    "PAYS_MESSAGE": "Pagos"
+    "PAYS_MESSAGE": "Pagos",
+    "MODEL_MESSAGE": "Modelo",
+    "VERSION_MESSAGE": "Versión",
+    "GTIA_MESSAGE": "Garantía",
+    "DATEACT_MESSAGE": "Fecha de activación",
+    "YES_MESSAGE": "Si",
+    "NO_MESSAGE": "No",
+    "FINDISC_MESSAGE": "Búsqueda de Isc",
+    "MSG6_MESSAGE": "No se encontraron isc para mostrar",
+    "IMG_MESSAGE": "Imagen Isc",
+    "VIEW_MESSAGE": "Ver Isc",
+    "DELISC_MESSAGE": "Eliminar Isc",
+    "VIEWUSR_MESSAGE": "Ver usuario",
+    "DELUSR_MESSAGE": "Eliminar usuario"
   }

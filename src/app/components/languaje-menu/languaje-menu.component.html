@@ -1,9 +1,9 @@
 <div class="setIdioma">
   <div>
     <select (change)="changeLanguage($event)">
-      <option value="es">Español</option>
-      <option value="it">Italiano</option>
-      <option value="pt">Portugues</option>
+      <option value="es" [selected]="idiomaSeleccionado === 'es'">Español</option>
+      <option value="it" [selected]="idiomaSeleccionado === 'it'">Italiano</option>
+      <option value="pt" [selected]="idiomaSeleccionado === 'pt'">Portugués</option>
     </select>
   </div>
   <div>
