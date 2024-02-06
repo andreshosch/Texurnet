@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <mat-toolbar>
-    <span>{{titulo}}</span>
+    <span *ngIf="edicionCliente">{{ 'EDIT_MESSAGE' | translate }}</span>
+    <span *ngIf="altaCliente">{{ 'ADDC_MESSAGE' | translate }}</span>
 </mat-toolbar>
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="0ms" style="margin-top: 2%;">
     <mat-tab label="{{ 'DATAS_MESSAGE' | translate }}"><div class="ladoIzquierdo container">

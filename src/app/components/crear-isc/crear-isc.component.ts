@@ -15,8 +15,9 @@ export class CrearIscComponent {
   prueba = window.location;
   listIsc: Isc[] = []
   id: string | null
-  titulo = 'Crear Isc';
   minimo:Date
+  edicionIsc: boolean = true
+  altaIsc: boolean = false
 
 
   constructor(private fb: FormBuilder, private _iscService: IscService, private router: Router, private _snackBar: MatSnackBar, private aRouter: ActivatedRoute) {
@@ -86,7 +87,8 @@ export class CrearIscComponent {
 
   editarIsc() {
     if (this.id !== null) {
-      this.titulo = 'Datos Isc'
+      this.edicionIsc = true
+      this.altaIsc = false
       this._iscService.getIscById(this.id).subscribe(data => {
         this.formIsc.setValue({
           modelo: data.modelo,
@@ -98,6 +100,10 @@ export class CrearIscComponent {
         })
 
       })
+    }
+    else{
+      this.edicionIsc = false
+      this.altaIsc = true
     }
   }
 }

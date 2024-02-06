@@ -54,6 +54,10 @@
     "VIEW_MESSAGE": "Consulte o Isc",
     "DELISC_MESSAGE": "Remover Isc",
     "VIEWUSR_MESSAGE": "Ver usuário",
-    "DELUSR_MESSAGE": "Deletar usuário"
+    "DELUSR_MESSAGE": "Deletar usuário",
+    "EDIT_MESSAGE": "Dados do cliente",
+    "ADDC_MESSAGE": "Criar cliente",
+    "EDITISC_MESSAGE": "Dados Isc",
+    "ADDISC_MESSAGE": "Criar Isc"
 
   }

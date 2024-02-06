@@ -22,10 +22,11 @@ export class CrearClienteComponent {
   hayCliente: boolean = false;
   conversion: boolean = true;
   montoIncorrecto: boolean = false;
+  edicionCliente: boolean = true
+  altaCliente: boolean = false
 
   form:FormGroup
   loading=false
-  titulo='Crear Cliente';
   id: string|null
   listClientes:Cliente[]=[]
   minimo:Date
@@ -247,7 +248,9 @@ calcularSaldo(costo, pagos): number{
       this.hayCliente = true
       this.hideSaldo=true
       this.saldoBloq=true
-      this.titulo = 'Datos Cliente'
+      this.edicionCliente = true
+      this.altaCliente = false
+
       this._clienteService.getClientsById(this.id).subscribe(data => {
         this.form.setValue({
           nombre: data.nombre,
@@ -264,6 +267,10 @@ calcularSaldo(costo, pagos): number{
         this.listPagos= data.productoActual
         this.dataSource = new MatTableDataSource(this.listPagos)
       })
+    }
+    else{
+      this.edicionCliente = false
+      this.altaCliente = true
     }
   }
 
