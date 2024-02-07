@@ -115,6 +115,11 @@ formatoFecha(date: Date): string {
   const year = date.getFullYear().toString();
   return `${day}/${month}/${year}`;
 }
+
+cancel(){
+  this.showConfirmationDialog = false
+}
+
 }
 
 

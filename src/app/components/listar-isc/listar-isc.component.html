@@ -89,9 +89,9 @@
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="">
             </mat-paginator>
-            <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">{{ 'BACK_MESSAGE' | translate }}</button>
         </div>
     </div>
     <h2 *ngIf="listIsc.length==0 ;hayLicenciasAlLimite">{{ 'MSG6_MESSAGE' | translate }}</h2>
+    <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">{{ 'BACK_MESSAGE' | translate }}</button>
 </div>
 <app-footer></app-footer>

@@ -74,5 +74,7 @@
     "CLIENT_DEL": "Il cliente è stato eliminato con successo",
     "ESPANOL_MESSAGE":"Spagnolo",
     "ITALIANO_MESSAGE":"Italiano",
-    "PORTUGUES_MESSAGE":"Portoghese"
+    "PORTUGUES_MESSAGE":"Portoghese",
+    "PAYDEL_SUCCES": "Il pagamento è stato rimosso con successo",
+    "DELPAY_MESSAGE": "Elimina il pagamento"
   }

@@ -18,6 +18,7 @@ export class ClienteComponent {
   fecha=new Date().getTime();
   idDelete: string;
   condicionDeudor=true
+  loading: boolean = false
  
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','deudaLicencia','acciones'];

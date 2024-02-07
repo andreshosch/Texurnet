@@ -39,6 +39,9 @@ export class CrearClienteComponent {
   modalSaldo=false
   hideSaldo=false
   saldoBloq=false
+  showConfirmationDel = false;
+  pagoAux: any
+
 
   constructor( private fb:FormBuilder, private _clienteService: ClienteService, private router:Router,private _snackBar:MatSnackBar,private aRouter:ActivatedRoute, private _translateService: TranslateService){
     this.minimo = new Date(); 
@@ -218,7 +221,7 @@ export class CrearClienteComponent {
             this._clienteService.updateClient(this.id, client).then(data => {
               this.listClientes = data
               
-                this._snackBar.open(this._translateService.instant('PAY_SUCCES'), '', {
+                this._snackBar.open(this._translateService.instant('PAYDEL_SUCCES'), '', {
                   duration: 1500,
                   horizontalPosition: 'center',
                 })
@@ -364,7 +367,12 @@ calcularSaldo(costo, pagos): number{
 
 
   eliminarPagos(element){
-    let resuelve = 0;
+    this.showConfirmationDel = true
+    this.pagoAux = element
+  }
+
+  confirmDel(element){
+      let resuelve = 0;
     for(let j =0; j < this.listPagos.length; j++){
       if(this.listPagos[j].monto == element.monto){
         resuelve = j;
@@ -374,9 +382,12 @@ calcularSaldo(costo, pagos): number{
     this.listPagos.splice(resuelve, 1)
     this.dataSource = new MatTableDataSource(this.listPagos)
     this.deletePago()
-     
-    
   }
+
+  cancel(){
+    this.showConfirmationDel = false
+  }
+
 } 
 
 
