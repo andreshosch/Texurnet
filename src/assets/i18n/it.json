@@ -76,5 +76,6 @@
     "ITALIANO_MESSAGE":"Italiano",
     "PORTUGUES_MESSAGE":"Portoghese",
     "PAYDEL_SUCCES": "Il pagamento è stato rimosso con successo",
-    "DELPAY_MESSAGE": "Elimina il pagamento"
+    "DELPAY_MESSAGE": "Elimina il pagamento",
+    "LOGIN_ERROR": "Errore di accesso: nome utente o password non validi"
   }

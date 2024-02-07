@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   form: FormGroup;
   loading = false
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private _translateService: TranslateService) {
 
     this.form = this.fb.group({
       usuario: ['', Validators.required],
@@ -36,7 +37,7 @@ export class LoginComponent {
     }
   }
   error() {
-    this._snackBar.open('Usuario o Contraseña ingresado son inválidos', '', {
+      this._snackBar.open(this._translateService.instant('LOGIN_ERROR'), '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'

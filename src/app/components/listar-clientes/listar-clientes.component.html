@@ -7,6 +7,9 @@
         <button mat-raised-button color="primary" routerLink="/crearCliente">{{ 'ADD_MESSAGE' | translate }}</button>
     </mat-toolbar>
  
+    <div *ngIf="listClientes.length==0" class="ambitoSpinner">
+        <mat-spinner class="spinner" diameter="50"></mat-spinner>
+    </div>
     <div *ngIf="listClientes.length>0">
         <mat-form-field style="margin-top: 20px;">
             <mat-label>{{ 'FIND_MESSAGE' | translate }}</mat-label>
@@ -78,6 +81,6 @@
             <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">{{ 'BACK_MESSAGE' | translate }}</button>
         </div>
     </div>
-    <h2 *ngIf="listClientes.length==0 ;hayLicenciasAlLimite" >{{ 'MSG2_MESSAGE' | translate }}</h2>
+    <h2 *ngIf="(listClientes.length==0 && !cargando) ;hayLicenciasAlLimite" >{{ 'MSG2_MESSAGE' | translate }}</h2>
 </div>
 <app-footer></app-footer>

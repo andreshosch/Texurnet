@@ -76,5 +76,6 @@
     "ITALIANO_MESSAGE":"Italiano",
     "PORTUGUES_MESSAGE":"Portugués",
     "PAYDEL_SUCCES": "El pago ha sido eliminado correctamente",
-    "DELPAY_MESSAGE": "Eliminar pago"
+    "DELPAY_MESSAGE": "Eliminar pago",
+    "LOGIN_ERROR": "Error de acceso: Usuario o Clave inválido"
   }
