@@ -21,6 +21,7 @@ export class ListarIscComponent {
   dataSource!: MatTableDataSource<Isc>;
   private paginator: MatPaginator;
   private sort: MatSort;
+  cargarISC: boolean = false
 
 
 
@@ -47,6 +48,7 @@ export class ListarIscComponent {
     this.dataSource = new MatTableDataSource(this.listIsc);
   }
   ngOnInit() {
+    this.cargarISC = true
     this.cargarIsc()
     
 }
@@ -86,6 +88,7 @@ cargarIsc() {
         ... element.payload.doc.data()
       })
     });
+    this.cargarISC = false
   })
 }
 

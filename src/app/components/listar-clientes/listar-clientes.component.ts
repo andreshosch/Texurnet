@@ -19,7 +19,7 @@ export class ClienteComponent {
   idDelete: string;
   condicionDeudor=true
   loading: boolean = false
-  cargando:boolean = false
+  cargandoClientes: boolean = false
  
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','deudaLicencia','acciones'];
@@ -60,6 +60,7 @@ setDataSourceAttributes() {
   }
 
   ngOnInit() {
+      this.cargandoClientes = true
       this.cargarCliente()
       this.hayLicenciasAlLimite=false;
   }
@@ -75,7 +76,6 @@ applyFilter(event: Event) {
 
 
    cargarCliente() {
-    this.cargando = true
     this._clienteService.getClients().subscribe(doc=>{
       this.listClientes=[]
       this.dataSource = new MatTableDataSource(this.listClientes)
@@ -86,7 +86,7 @@ applyFilter(event: Event) {
           ... element.payload.doc.data()
         })
       });
-      this.cargando = false
+      this.cargandoClientes = false
     })
   }
 
