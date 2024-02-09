@@ -7,6 +7,9 @@
         <button mat-raised-button color="primary" routerLink="/crearIsc">{{ 'ADD_MESSAGE' | translate }}</button>
     </mat-toolbar>
  
+    <div *ngIf="cargarISC" class="ambitoSpinner">
+        <mat-spinner class="spinner" diameter="50"></mat-spinner>
+    </div>
     <div *ngIf="listIsc.length>0">
         <mat-form-field style="margin-top: 20px;">
             <mat-label>{{ 'FINDISC_MESSAGE' | translate }}</mat-label>
@@ -94,7 +97,7 @@
             </mat-paginator>
         </div>
     </div>
-    <h2 *ngIf="listIsc.length==0 ;hayLicenciasAlLimite">{{ 'MSG6_MESSAGE' | translate }}</h2>
+    <h2 *ngIf="(listIsc.length==0 && !cargarISC) ;hayLicenciasAlLimite">{{ 'MSG6_MESSAGE' | translate }}</h2>
     <button mat-raised-button color="primary" routerLink="/home" class="buttonVolver">{{ 'BACK_MESSAGE' | translate }}</button>
 </div>
 <app-footer></app-footer>
