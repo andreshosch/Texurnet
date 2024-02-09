@@ -58,7 +58,7 @@ export class CrearIscComponent {
       codigoActualizacion: this.formIsc.get('codigoActualizacion')?.value,
       observaciones: this.formIsc.get('observaciones')?.value,
     }
-    if (this.prueba.href == "http://localhost:4200/crearIsc") {
+    if (this.prueba.href == "https://sistema-texurnet.web.app/crearIsc") {
       // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._iscService.createIsc(isc).then(() => {
           this._snackBar.open(this._translateService.instant('ISC_ADD'), '', {
