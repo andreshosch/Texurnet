@@ -79,5 +79,8 @@
     "CLIENT_DEL": "O cliente foi excluído com sucesso",
     "ESPANOL_MESSAGE":"Espanhol",
     "ITALIANO_MESSAGE":"Italiano",
-    "PORTUGUES_MESSAGE":"Português"
+    "PORTUGUES_MESSAGE":"Português",
+    "PAYDEL_SUCCES": "O pagamento foi removido com sucesso",
+    "DELPAY_MESSAGE": "Deletar pagamento",
+    "LOGIN_ERROR": "Erro de acesso: nome de usuário ou senha inválidos"
   }

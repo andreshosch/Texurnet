@@ -117,8 +117,9 @@ formatoFecha(date: Date): string {
 }
 
 cancel(){
-  this.showConfirmationDialog=false
+  this.showConfirmationDialog = false
 }
+
 }
 
 

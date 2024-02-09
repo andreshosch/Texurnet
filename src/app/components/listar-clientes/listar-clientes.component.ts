@@ -18,6 +18,8 @@ export class ClienteComponent {
   fecha=new Date().getTime();
   idDelete: string;
   condicionDeudor=true
+  loading: boolean = false
+  cargando:boolean = false
  
 
   displayedColumns: string[] = ['nombre', 'apellido','ciudad','fechaLicencia','deudaLicencia','acciones'];
@@ -73,6 +75,7 @@ applyFilter(event: Event) {
 
 
    cargarCliente() {
+    this.cargando = true
     this._clienteService.getClients().subscribe(doc=>{
       this.listClientes=[]
       this.dataSource = new MatTableDataSource(this.listClientes)
@@ -83,6 +86,7 @@ applyFilter(event: Event) {
           ... element.payload.doc.data()
         })
       });
+      this.cargando = false
     })
   }
 

@@ -79,5 +79,8 @@
     "CLIENT_DEL": "El cliente ha sido eliminado correctamente",
     "ESPANOL_MESSAGE":"Español",
     "ITALIANO_MESSAGE":"Italiano",
-    "PORTUGUES_MESSAGE":"Portugués"
+    "PORTUGUES_MESSAGE":"Portugués",
+    "PAYDEL_SUCCES": "El pago ha sido eliminado correctamente",
+    "DELPAY_MESSAGE": "Eliminar pago",
+    "LOGIN_ERROR": "Error de acceso: Usuario o Clave inválido"
   }
