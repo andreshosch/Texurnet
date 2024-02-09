@@ -2,7 +2,7 @@
 
 <div class="container">
     <mat-toolbar>
-        <span class="clienteIzq">Isc</span>
+        <span class="clienteIzq">ISC Systems</span>
         <div class="example-spacer"> </div>
         <button mat-raised-button color="primary" routerLink="/crearIsc">{{ 'ADD_MESSAGE' | translate }}</button>
     </mat-toolbar>
@@ -27,10 +27,13 @@
                     <td mat-cell *matCellDef="let element"> {{element.version}} </td>
                 </ng-container>
 
-
-                <ng-container matColumnDef="software">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">Software</th>
-                    <td mat-cell *matCellDef="let element"> {{element.software}} </td>
+                <ng-container matColumnDef="nroSerie">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">Nro Serie</th>
+                    <td mat-cell *matCellDef="let element"> {{element.nroSerie}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nombreCliente">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#3f51b5;color: white;">{{ 'NOMBRE_MESSAGE' | translate }}</th>
+                    <td mat-cell *matCellDef="let element"> {{element.nroSerie}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="garantia" >

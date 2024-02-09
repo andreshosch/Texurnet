@@ -17,7 +17,7 @@ export class ListarIscComponent {
   idDelete:string
  resultadoBusqueda:string
  public showConfirmationDialog=false
-  displayedColumns: string[] = ['modelo', 'version', 'software', 'garantia', 'fechaActivacion','stock', 'acciones'];
+  displayedColumns: string[] = ['modelo','version', 'nroSerie', 'nombreCliente', 'garantia', 'fechaActivacion','stock', 'acciones'];
   dataSource!: MatTableDataSource<Isc>;
   private paginator: MatPaginator;
   private sort: MatSort;
@@ -114,6 +114,10 @@ formatoFecha(date: Date): string {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear().toString();
   return `${day}/${month}/${year}`;
+}
+
+cancel(){
+  this.showConfirmationDialog=false
 }
 }
 

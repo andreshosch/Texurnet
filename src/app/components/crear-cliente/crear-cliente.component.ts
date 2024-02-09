@@ -27,7 +27,6 @@ export class CrearClienteComponent {
   altaCliente: boolean = false
 
   form:FormGroup
-  loading=false
   id: string|null
   listClientes:Cliente[]=[]
   minimo:Date

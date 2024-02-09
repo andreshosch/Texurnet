@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   form: FormGroup;
-  loading = false
+  
 
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
 
@@ -44,17 +46,17 @@ export class LoginComponent {
   }
 
   fakeLoggin() {
-    this.loading = true
+   
     setTimeout(() => {
       this.router.navigate(['home'])
-    }, 1500);
+    }, 3000);
   }
 
   loginInvitado(){
-    this.loading = true
+    
     setTimeout(() => {
       this.router.navigate(['invitado'])
-    }, 1500);
+    }, 3000);
   }
 
 }

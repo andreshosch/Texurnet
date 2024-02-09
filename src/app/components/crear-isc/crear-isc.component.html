@@ -23,8 +23,14 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Software</mat-label>
-                            <input matInput autocomplete="off" formControlName="software">
+                            <mat-label>{{ 'SERIE_MESSAGE' | translate }}</mat-label>
+                            <input matInput autocomplete="off" formControlName="nroSerie">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>{{ 'NOMBRE_MESSAGE' | translate }}</mat-label>
+                            <input matInput autocomplete="off" formControlName="nombreCliente">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
@@ -36,7 +42,7 @@
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>{{ 'DATEACT_MESSAGE' | translate }}</mat-label>
-                            <input matInput [matDatepicker]="picker1" [min]="minimo"
+                            <input matInput [matDatepicker]="picker1"
                             formControlName="fechaActivacion">
                         <mat-datepicker-toggle matIconSuffix [for]="picker1">
                             <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
@@ -46,13 +52,32 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
+                            <mat-label>{{ 'ACTIV_MESSAGE' | translate }}</mat-label>
+                            <input matInput autocomplete="off" formControlName="codigoActivacion">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>{{ 'COD_MESSAGE' | translate }}</mat-label>
+                            <input matInput autocomplete="off" formControlName="codigoActualizacion">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>{{ 'OBS_MESSAGE' | translate }}</mat-label>
+                            <textarea matInput autocomplete="off" formControlName="observaciones"
+                            [(ngModel)]="textoTextarea" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
                             <mat-label>Stock</mat-label>
                             <select matNativeControl formControlName="stock">
                                 <option value="SI">{{ 'YES_MESSAGE' | translate }}</option>
                                 <option value="NO">{{ 'NO_MESSAGE' | translate }}</option>
                             </select>
                           </mat-form-field>
-                          
                     </mat-grid-tile>
                     
                    

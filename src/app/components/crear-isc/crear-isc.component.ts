@@ -16,22 +16,26 @@ export class CrearIscComponent {
   prueba = window.location;
   listIsc: Isc[] = []
   id: string | null
-  minimo:Date
   edicionIsc: boolean = true
   altaIsc: boolean = false
+  textoTextarea: string = '';
+
 
 
   constructor(private fb: FormBuilder, private _iscService: IscService, private router: Router, private _snackBar: MatSnackBar, private aRouter: ActivatedRoute, private _translateService: TranslateService) {
     this.formIsc = this.fb.group({
       modelo: ['', Validators.required],
       version: ['', Validators.required],
-      software: ['', Validators.required],
+      nroSerie: ['', Validators.required],
+      nombreCliente: ['', Validators.required],
       garantia: ['', Validators.required],
       fechaActivacion: ['', Validators.required],
       stock: ['', Validators.required],
+      codigoActivacion: ['', Validators.required],
+      codigoActualizacion: ['', Validators.required],
+      observaciones: [''],
     })
     this.id = this.aRouter.snapshot.paramMap.get('id');
-    this.minimo=new Date()
 
   }
 
@@ -45,10 +49,14 @@ export class CrearIscComponent {
     const isc: Isc = {
       modelo: this.formIsc.get('modelo')?.value,
       version: this.formIsc.get('version')?.value,
-      software: this.formIsc.get('software')?.value,
+      nroSerie: this.formIsc.get('nroSerie')?.value,
+      nombreCliente: this.formIsc.get('nombreCliente')?.value,
       garantia: this.formIsc.get('garantia')?.value,
       fechaActivacion: this.formIsc.get('fechaActivacion')?.value,
       stock: this.formIsc.get('stock')?.value,
+      codigoActivacion: this.formIsc.get('codigoActivacion')?.value,
+      codigoActualizacion: this.formIsc.get('codigoActualizacion')?.value,
+      observaciones: this.formIsc.get('observaciones')?.value,
     }
     if (this.prueba.href == "http://localhost:4200/crearIsc") {
       // if(this.prueba.href=="http://localhost:4200/crearCliente"){
@@ -77,6 +85,10 @@ export class CrearIscComponent {
             duration: 1500,
             horizontalPosition: 'center',
           })
+          setTimeout(() => {
+            this.router.navigate(['isc'])
+          }, 2000);
+  
           this.listIsc = data
         }, error => {
           console.log(error)
@@ -95,10 +107,14 @@ export class CrearIscComponent {
         this.formIsc.setValue({
           modelo: data.modelo,
           version: data.version,
-          software: data.software,
+          nroSerie: data.nroSerie,
+          nombreCliente:data.nombreCliente,
           garantia: data.garantia,
           fechaActivacion: data.fechaActivacion.toDate(),
           stock: data.stock,
+          codigoActivacion:data.codigoActivacion,
+          codigoActualizacion:data.codigoActivacion,
+          observaciones:data.observaciones
         })
 
       })

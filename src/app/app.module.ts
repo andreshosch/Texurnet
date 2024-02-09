@@ -23,7 +23,8 @@ import { CrearIscComponent } from './components/crear-isc/crear-isc.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { HttpClient } from '@angular/common/http';
-import { LanguajeMenuComponent } from './components/languaje-menu/languaje-menu.component'; 
+import { LanguajeMenuComponent } from './components/languaje-menu/languaje-menu.component';
+
 
 
 
@@ -46,7 +47,8 @@ registerLocaleData(localeArEG);
     ListarIscComponent,
     CrearIscComponent,
     InvitadoComponent,
-    LanguajeMenuComponent
+    LanguajeMenuComponent,
+    
     
     
   ],
