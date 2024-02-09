@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   form: FormGroup;
+  loading:boolean
   
 
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
