@@ -50,7 +50,7 @@ export class CrearIscComponent {
       fechaActivacion: this.formIsc.get('fechaActivacion')?.value,
       stock: this.formIsc.get('stock')?.value,
     }
-    if (this.prueba.href == "http://localhost:4200/crearIsc") {
+    if (this.prueba.href == "https://sistema-texurnet.web.app/crearIsc") {
       // if(this.prueba.href=="http://localhost:4200/crearCliente"){
       this._iscService.createIsc(isc).then(() => {
           this._snackBar.open(this._translateService.instant('ISC_ADD'), '', {

@@ -379,9 +379,11 @@ calcularSaldo(costo, pagos): number{
         j = this.listPagos.length
       }
     }
+    this.showConfirmationDel = false
     this.listPagos.splice(resuelve, 1)
     this.dataSource = new MatTableDataSource(this.listPagos)
     this.deletePago()
+    
   }
 
   cancel(){
